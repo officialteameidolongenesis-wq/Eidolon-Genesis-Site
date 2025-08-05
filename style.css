@@ -1,49 +1,143 @@
-body {
+/* ==== Reset base ==== */
+* {
   margin: 0;
-  font-family: 'Segoe UI', sans-serif;
-  background-color: #000;
-  color: #eee;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #111;
-  padding: 1rem 2rem;
+html {
+  scroll-behavior: smooth;
 }
 
-.logo {
-  height: 50px;
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #0a0a0a;
+  color: #e0e0e0;
+  line-height: 1.6;
 }
 
-nav ul {
-  list-style: none;
-  display: flex;
-  gap: 1rem;
+/* ==== Container ==== */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
 }
 
-nav a {
-  color: #ccc;
-  text-decoration: none;
-}
-
-nav a:hover {
-  color: #f44;
-}
-
-.hero {
+/* ==== Hero Section ==== */
+#hero {
+  background: radial-gradient(circle at center, #151515, #0a0a0a);
   text-align: center;
+  padding: 6rem 2rem;
+  border-bottom: 1px solid #333;
+}
+
+#hero h1 {
+  font-size: 3.5rem;
+  color: #ffffff;
+  letter-spacing: 0.1em;
+  margin-bottom: 1rem;
+  text-shadow: 0 0 8px #8f00ff;
+}
+
+#hero p {
+  font-size: 1.2rem;
+  color: #cccccc;
+}
+
+/* ==== Anime Section ==== */
+#anime {
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+#anime h2 {
+  font-size: 2.8rem;
+  margin-bottom: 1rem;
+  color: #ff3c7e;
+}
+
+#anime p {
+  font-size: 1.1rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* ==== Personaggi Section ==== */
+#personaggi {
   padding: 4rem 2rem;
 }
 
-.highlight {
-  color: #f44;
+#personaggi h2 {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  text-align: center;
+  color: #00b7ff;
 }
 
-footer {
-  text-align: center;
-  padding: 1rem;
+.personaggio {
+  margin-bottom: 2.5rem;
+  padding: 1.5rem;
+  border-left: 4px solid #00b7ff;
   background-color: #111;
-  color: #666;
+  transition: all 0.3s ease;
+}
+
+.personaggio:hover {
+  background-color: #1a1a1a;
+  transform: translateX(5px);
+}
+
+.personaggio h3 {
+  font-size: 1.6rem;
+  margin-bottom: 0.5rem;
+  color: #ffffff;
+}
+
+.personaggio p {
+  font-size: 1rem;
+  color: #cccccc;
+}
+
+/* ==== Contatti ==== */
+#contatti {
+  padding: 4rem 2rem;
+  background-color: #101010;
+  text-align: center;
+  border-top: 1px solid #333;
+}
+
+#contatti h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: #ffffff;
+}
+
+#contatti a {
+  display: inline-block;
+  margin-top: 1rem;
+  color: #8f00ff;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+#contatti a:hover {
+  color: #c88aff;
+}
+
+/* ==== Responsive (mobile) ==== */
+@media (max-width: 768px) {
+  #hero h1 {
+    font-size: 2.5rem;
+  }
+
+  #anime h2,
+  #personaggi h2,
+  #contatti h2 {
+    font-size: 2rem;
+  }
+
+  .container {
+    padding: 1.5rem;
+  }
 }
