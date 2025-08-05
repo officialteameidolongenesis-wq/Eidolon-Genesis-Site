@@ -104,18 +104,6 @@ footer a {
     font-size: 0.95rem;
   }
 }
-#contatti {
-  padding: 80px 20px;
-  background-color: #0d0d0d;
-  color: #ffffff;
-  text-align: center;
-}
-
-#contatti h2 {
-  font-size: 2em;
-  margin-bottom: 20px;
-}
-
 #contatti p {
   font-size: 1.2em;
   margin-bottom: 30px;
