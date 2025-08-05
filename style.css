@@ -104,3 +104,19 @@ footer a {
     font-size: 0.95rem;
   }
 }
+/* Instagram Button Style */
+.insta-button {
+  display: inline-block;
+  margin-top: 15px;
+  padding: 12px 24px;
+  font-size: 1rem;
+  color: white;
+  background: linear-gradient(45deg, #e1306c, #fd1d1d, #f56040);
+  text-decoration: none;
+  border-radius: 30px;
+  transition: transform 0.2s ease;
+}
+
+.insta-button:hover {
+  transform: scale(1.05);
+}
