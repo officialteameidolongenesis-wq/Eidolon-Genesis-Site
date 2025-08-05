@@ -1,54 +1,114 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Sito ufficiale di Eidolon Genesis - Un anime post-apocalittico tra oscurità e speranza.">
   <title>Eidolon Genesis – Official Site</title>
   <style>
     body {
+      margin: 0;
+      padding: 0;
+      font-family: "Segoe UI", sans-serif;
       background-color: #0e0e0e;
       color: #f0f0f0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       text-align: center;
-      padding: 50px;
+      min-height: 100vh;
+      justify-content: center;
     }
+
     h1 {
       font-size: 3em;
-      color: #e94560;
-      margin-bottom: 20px;
+      margin-bottom: 0.2em;
+      letter-spacing: 2px;
     }
-    p {
-      font-size: 1.3em;
-      margin-bottom: 40px;
+
+    h2 {
+      font-weight: normal;
+      color: #aaa;
+      margin-bottom: 1em;
     }
-    a {
-      color: #00ffff;
+
+    .btn {
+      background-color: #f0f0f0;
+      color: #0e0e0e;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 6px;
       text-decoration: none;
       font-weight: bold;
+      transition: background 0.3s;
     }
-    img {
-      width: 150px;
-      border-radius: 100%;
-      margin-top: 30px;
+
+    .btn:hover {
+      background-color: #ccc;
+    }
+
+    footer {
+      margin-top: 3em;
+      font-size: 0.9em;
+      color: #666;
+    }
+
+    .characters {
+      margin-top: 3em;
+      max-width: 700px;
+    }
+
+    .characters h3 {
+      font-size: 1.4em;
+      margin-bottom: 0.5em;
+    }
+
+    .char-card {
+      margin: 1em 0;
+      padding: 1em;
+      border: 1px solid #333;
+      border-radius: 10px;
+      background-color: #1a1a1a;
+    }
+
+    .char-card strong {
+      color: #fff;
     }
   </style>
 </head>
 <body>
 
   <h1>EIDOLON GENESIS</h1>
-  <p>
-    Progetto anime originale creato da <strong>EIDOMA Studio</strong><br>
-    “創造する者たち – The Creators”
-  </p>
+  <h2>「創造する者たち – The Creators」</h2>
 
-  <p>
-    Segui il nostro viaggio su<br>
-    <a href="https://www.instagram.com/eidolon_genesis_project?igsh=MWN3YXc3eWpuZ2Izcw" target="_blank">
-      Instagram ufficiale
-    </a>
-  </p>
+  <a class="btn" href="https://www.instagram.com/eidolon_genesis_project?igsh=MWN3YXc3eWpuZ2Izcw==" target="_blank">
+    Seguici su Instagram
+  </a>
 
-  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Red_circle_100%25_pure.svg/768px-Red_circle_100%25_pure.svg.png" alt="Logo temporaneo">
+  <div class="characters">
+    <h3>Personaggi Principali</h3>
+
+    <div class="char-card">
+      <strong>Kamiya Zevn</strong><br/>
+      Il protagonista: silenzioso, osservatore, segnato da un passato misterioso. <br/>
+      Il suo Eidolon dorme… per ora.
+    </div>
+
+    <div class="char-card">
+      <strong>Ema Zevn</strong><br/>
+      Sorella maggiore, forte e gentile, pronta a tutto per proteggere ciò che resta della sua famiglia.
+    </div>
+
+    <div class="char-card">
+      <strong>Vista Zevn</strong><br/>
+      Il padre, in coma. Ex tecnico militare e studioso degli Eidolon. <br/>
+      L’uomo che nasconde la verità.
+    </div>
+  </div>
+
+  <footer>
+    © 2025 EIDOMA Studio – Tutti i diritti riservati
+  </footer>
 
 </body>
 </html>
