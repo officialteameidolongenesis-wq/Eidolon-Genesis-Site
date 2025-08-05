@@ -104,19 +104,34 @@ footer a {
     font-size: 0.95rem;
   }
 }
-/* Instagram Button Style */
-.insta-button {
-  display: inline-block;
-  margin-top: 15px;
-  padding: 12px 24px;
-  font-size: 1rem;
-  color: white;
-  background: linear-gradient(45deg, #e1306c, #fd1d1d, #f56040);
-  text-decoration: none;
-  border-radius: 30px;
-  transition: transform 0.2s ease;
+#contatti {
+  padding: 80px 20px;
+  background-color: #0d0d0d;
+  color: #ffffff;
+  text-align: center;
 }
 
-.insta-button:hover {
-  transform: scale(1.05);
+#contatti h2 {
+  font-size: 2em;
+  margin-bottom: 20px;
+}
+
+#contatti p {
+  font-size: 1.2em;
+  margin-bottom: 30px;
+}
+
+.instagram-button {
+  display: inline-block;
+  background-color: #e1306c; /* Colore tipico di Instagram */
+  color: white;
+  padding: 12px 24px;
+  font-size: 1em;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+
+.instagram-button:hover {
+  background-color: #c2255c;
 }
