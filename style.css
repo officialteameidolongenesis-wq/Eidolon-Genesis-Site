@@ -111,15 +111,17 @@ footer a {
 
 .instagram-button {
   display: inline-block;
-  background-color: #e1306c; /* Colore tipico di Instagram */
+  background-color: #c13584; /* colore Instagram */
   color: white;
   padding: 12px 24px;
-  font-size: 1em;
+  border-radius: 30px;
   text-decoration: none;
-  border-radius: 8px;
-  transition: background-color 0.3s ease;
+  font-weight: bold;
+  font-size: 16px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .instagram-button:hover {
-  background-color: #c2255c;
+  background-color: #e1306c;
+  transform: scale(1.05);
 }
