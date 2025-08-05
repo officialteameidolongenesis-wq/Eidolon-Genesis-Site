@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="EIDOLON GENESIS - Official Page"/>
+  <title>Eidolon Genesis</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #0d0d0d;
+      color: #f2f2f2;
+      text-align: center;
+    }
+    header {
+      padding: 2rem;
+      background-color: #1a1a1a;
+    }
+    h1 {
+      font-size: 2.5rem;
+      letter-spacing: 2px;
+    }
+    p {
+      font-size: 1.2rem;
+      color: #ccc;
+    }
+    .link-box {
+      margin-top: 2rem;
+    }
+    a {
+      display: inline-block;
+      margin: 1rem;
+      padding: 1rem 2rem;
+      border: 2px solid #f2f2f2;
+      text-decoration: none;
+      color: #f2f2f2;
+      border-radius: 10px;
+      transition: background 0.3s ease;
+    }
+    a:hover {
+      background-color: #f2f2f2;
+      color: #0d0d0d;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>EIDOLON GENESIS</h1>
+    <p>公式ページ - Official Anime Page</p>
+    <p>By <strong>EIDOMA</strong> | 創造する者たち – The Creators</p>
+  </header>
+
+  <div class="link-box">
+    <a href="https://www.instagram.com/eidolon_genesis_project?igsh=MWN3YXc3eWpuZ2Izcw==" target="_blank">Instagram</a>
+    <a href="#" target="_blank">Coming Soon</a>
+  </div>
+</body>
+</html>
