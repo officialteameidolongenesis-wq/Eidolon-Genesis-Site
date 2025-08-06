@@ -94,25 +94,64 @@ footer a {
 /* .eidolon-section {
   ...
 } */
-  .eidolon-section {
+.eidolon-section {
   background-color: #0b0b0b;
-  color: #e6e6e6;
+  color: #f1f1f1;
   padding: 60px 20px;
-  text-align: center;
+  font-family: 'Segoe UI', sans-serif;
+  text-align: left;
+  border-top: 2px solid #444;
+}
+
+.eidolon-section .container {
+  max-width: 900px;
+  margin: 0 auto;
 }
 
 .eidolon-section h2 {
-  font-size: 2.4em;
+  font-size: 2rem;
+  color: #e64561;
   margin-bottom: 20px;
-  color: #c84376;
-  letter-spacing: 1px;
 }
 
-.eidolon-section p {
-  font-size: 1.1em;
-  line-height: 1.7em;
-  max-width: 800px;
-  margin: 0 auto 20px auto;
+.eidolon-section h3 {
+  font-size: 1.5rem;
+  color: #ffffff;
+  margin-top: 40px;
+}
+
+.eidolon-desc {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  margin-bottom: 20px;
+  color: #ccc;
+}
+
+.eidolon-quote {
+  font-size: 1.2rem;
+  font-style: italic;
+  color: #9cf;
+  margin: 30px 0;
+  text-align: center;
+}
+
+.eidolon-points {
+  list-style: none;
+  padding-left: 0;
+  margin-top: 20px;
+}
+
+.eidolon-points li {
+  margin-bottom: 15px;
+  font-size: 1rem;
+  color: #f1f1f1;
+}
+
+.eidolon-lastline {
+  font-size: 1.2rem;
+  color: #e64561;
+  margin-top: 30px;
+  text-align: center;
 }
 
 /* ======== MOBILE ======== */
