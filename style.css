@@ -50,6 +50,54 @@ a:hover {
   color: #a9d2ff;
 }
 
+/* --- Ambientazione Section Styling --- */
+#ambientazione {
+  background-color: #0e0e11; /* nero profondo */
+  color: #d6d6e0;            /* grigio lunare */
+  padding: 60px 20px;
+  font-family: 'Segoe UI', 'Roboto', sans-serif;
+  line-height: 1.8;
+  border-top: 2px solid #383850;
+  border-bottom: 2px solid #383850;
+}
+
+#ambientazione h2 {
+  font-size: 2.5em;
+  color: #e63946; /* rosso porpora spento */
+  margin-bottom: 10px;
+  text-align: center;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+#ambientazione h3 {
+  font-size: 1.6em;
+  color: #88c0d0; /* blu cenere */
+  margin-top: 40px;
+  margin-bottom: 10px;
+  border-left: 4px solid #88c0d0;
+  padding-left: 10px;
+}
+
+#ambientazione p {
+  font-size: 1.05em;
+  margin-bottom: 20px;
+  color: #e0e0e0;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Optional: subtle glowing line separator */
+#ambientazione::before, #ambientazione::after {
+  content: "";
+  display: block;
+  height: 1px;
+  background: linear-gradient(to right, transparent, #88c0d0, transparent);
+  margin: 20px auto;
+  width: 80%;
+}
+
 /* ======== CONTAINERS ======== */
 section {
   margin-bottom: 40px;
