@@ -1,43 +1,188 @@
-/* =========================== CSS – EIDOLON GENESIS SITE Stile: oscuro, glitch-tech, urbano =========================== */
+/* === RESET BASE === */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-/* Reset base */
+html, body {
+  height: 100%;
+  font-family: 'Orbitron', 'Segoe UI', sans-serif;
+  background-color: #0d0d0d;
+  color: #e0e0e0;
+  line-height: 1.6;
+  scroll-behavior: smooth;
+}
 
-{ margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+/* === NAVBAR === */
+nav {
+  background-color: #0f0f0f;
+  border-bottom: 1px solid #2a2a2a;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
 
+nav h1 {
+  font-size: 1.8rem;
+  letter-spacing: 2px;
+  color: #ffffff;
+  text-shadow: 0 0 5px #ff003c55;
+}
 
-body { background-color: #0d0d0d; color: #f0f0f0; font-family: 'Orbitron', 'Segoe UI', sans-serif; line-height: 1.6; font-size: 16px; }
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+}
 
-header { background-color: #111; padding: 20px; border-bottom: 1px solid #444; }
+nav ul li a {
+  text-decoration: none;
+  color: #cccccc;
+  transition: color 0.2s ease-in-out;
+}
 
-nav { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; }
+nav ul li a:hover {
+  color: #ff003c;
+  text-shadow: 0 0 6px #ff003c88;
+}
 
-.logo { font-size: 1.8rem; color: #e8308c; letter-spacing: 2px; font-weight: bold; }
+/* === HEADER === */
+header {
+  background: linear-gradient(to bottom, #121212, #000000);
+  padding: 6rem 2rem 3rem;
+  text-align: center;
+}
 
-nav ul { list-style: none; display: flex; gap: 25px; }
+header h2 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  color: #f5f5f5;
+  text-shadow: 0 0 10px #ffffff22;
+}
 
-nav a { color: #f0f0f0; text-decoration: none; transition: 0.3s ease; }
+header p {
+  max-width: 700px;
+  margin: 0 auto;
+  font-size: 1.2rem;
+  color: #bbbbbb;
+}
 
-nav a:hover { color: #e8308c; text-shadow: 0 0 5px #e8308c; }
+/* === SECTIONS === */
+section {
+  padding: 4rem 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
 
-section { padding: 60px 20px; max-width: 1100px; margin: auto; }
+section h3 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: #ffffff;
+  border-bottom: 1px solid #2f2f2f;
+  padding-bottom: 0.5rem;
+}
 
-section h2 { font-size: 2rem; color: #e8308c; margin-bottom: 20px; border-left: 4px solid #e8308c; padding-left: 10px; }
+section p {
+  margin-bottom: 1.5rem;
+  color: #cccccc;
+}
 
-section p { color: #ccc; font-size: 1.1rem; margin-bottom: 20px; }
+.character {
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  background: #181818;
+  border-left: 3px solid #ff003c;
+  box-shadow: 0 0 10px #ff003c22;
+  border-radius: 6px;
+}
 
-.character-card { background-color: #1a1a1a; padding: 20px; margin-bottom: 20px; border: 1px solid #333; border-radius: 6px; box-shadow: 0 0 10px rgba(232, 48, 140, 0.15); }
+.character h4 {
+  font-size: 1.3rem;
+  color: #ffffff;
+  margin-bottom: 0.5rem;
+}
 
-.character-card h3 { font-size: 1.3rem; color: #fff; margin-bottom: 8px; }
+.character p {
+  font-size: 1rem;
+  color: #bcbcbc;
+}
 
-.character-card p { color: #aaa; font-size: 1rem; }
+/* === FOOTER === */
+footer {
+  background-color: #0d0d0d;
+  color: #888888;
+  text-align: center;
+  padding: 2rem 0;
+  font-size: 0.9rem;
+  border-top: 1px solid #222;
+}
 
-footer { background-color: #111; text-align: center; padding: 30px 20px; border-top: 1px solid #444; color: #888; font-size: 0.9rem; margin-top: 50px; }
+/* === RESPONSIVE === */
+@media (max-width: 768px) {
+  nav ul {
+    flex-direction: column;
+    gap: 1rem;
+  }
 
-/* Hero section */ .hero { background: linear-gradient(180deg, #0d0d0d, #1a1a1a); text-align: center; padding: 100px 20px; }
+  header h2 {
+    font-size: 2.2rem;
+  }
 
-.hero h1 { font-size: 3rem; color: #e8308c; margin-bottom: 20px; }
+  section {
+    padding: 2rem 1.5rem;
+  }
 
-.hero p { font-size: 1.2rem; color: #bbb; max-width: 700px; margin: 0 auto; }
+  .character {
+    padding: 1rem;
+  }
+}
+<h2 class="glitch" data-text="EIDOLON GENESIS">EIDOLON GENESIS</h2>
 
-@media (max-width: 768px) { nav ul { flex-direction: column; gap: 15px; } .hero h1 { font-size: 2.2rem; } .hero p { font-size: 1rem; } section h2 { font-size: 1.6rem; } }
+.glitch {
+  position: relative;
+  color: #fff;
+  font-weight: bold;
+}
 
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+}
+
+.glitch::before {
+  animation: glitchTop 1s infinite linear alternate-reverse;
+  top: -2px;
+  color: #ff003c;
+}
+
+.glitch::after {
+  animation: glitchBottom 1s infinite linear alternate-reverse;
+  top: 2px;
+  color: #00fff9;
+}
+
+@keyframes glitchTop {
+  0% { clip: rect(0, 9999px, 0, 0); }
+  10% { clip: rect(0, 9999px, 2px, 0); }
+  20% { clip: rect(0, 9999px, 0, 0); }
+  30% { clip: rect(1px, 9999px, 3px, 0); }
+  100% { clip: rect(0, 9999px, 0, 0); }
+}
+
+@keyframes glitchBottom {
+  0% { clip: rect(2px, 9999px, 0, 0); }
+  10% { clip: rect(3px, 9999px, 1px, 0); }
+  20% { clip: rect(1px, 9999px, 2px, 0); }
+  30% { clip: rect(0, 9999px, 1px, 0); }
+  100% { clip: rect(2px, 9999px, 0, 0); }
+}
+*/
