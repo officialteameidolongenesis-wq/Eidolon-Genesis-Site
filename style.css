@@ -127,13 +127,6 @@ a:hover {
     display: block;
   }
 }
-  nav {
-  box-shadow: none !important;
-  border: none !important;
-  background: #0d0d0d !important; /* Cambia colore se vuoi */
-  background-image: none !important;
-  }
-
 /* ======== SEZIONI GENERALI ======== */
 section {
   margin-bottom: 40px;
@@ -324,4 +317,16 @@ footer a {
   p {
     font-size: 0.95rem;
   }
+}
+.navbar {
+  background: #0d0d0d !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  border-bottom: none !important;
+}
+
+.navbar::after,
+.navbar::before {
+  display: none !important;
+  content: none !important;
 }
