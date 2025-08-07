@@ -127,6 +127,12 @@ a:hover {
     display: block;
   }
 }
+  nav {
+  box-shadow: none !important;
+  border: none !important;
+  background: #0d0d0d !important; /* Cambia colore se vuoi */
+  background-image: none !important;
+  }
 
 /* ======== SEZIONI GENERALI ======== */
 section {
