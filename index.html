@@ -1,43 +1,118 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang="it">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="Sito ufficiale di Eidolon Genesis - Un manga ambientato in un era post-apocalittica tra oscurità e speranza.">
+  <meta name="description" content="Sito ufficiale di Eidolon Genesis - Un manga ambientato in un'era post-apocalittica tra oscurità e speranza.">
   <title>Eidolon Genesis – Official Site</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    /* NAVBAR BASE */
+    .navbar {
+      position: fixed;
+      width: 100%;
+      top: 0;
+      left: 0;
+      z-index: 1000;
+      background-color: transparent; /* Nessun riquadro nero */
+      padding: 10px 20px;
+    }
+
+    .navbar-container {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+    }
+
+    /* NASCONDI IL LOGO */
+    .logo {
+      display: none;
+    }
+
+    .menu-toggle {
+      font-size: 28px;
+      cursor: pointer;
+      color: white;
+    }
+
+    .nav-links {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      background-color: rgba(0, 0, 0, 0.95);
+      position: absolute;
+      top: 60px;
+      right: 0;
+      width: 200px;
+      padding: 20px;
+    }
+
+    .nav-links.active {
+      display: flex;
+    }
+
+    .nav-links li {
+      margin: 10px 0;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-size: 16px;
+    }
+
+    @media (min-width: 768px) {
+      .menu-toggle {
+        display: none;
+      }
+
+      .nav-links {
+        display: flex !important;
+        flex-direction: row;
+        background-color: transparent;
+        position: static;
+        width: auto;
+        padding: 0;
+      }
+
+      .nav-links li {
+        margin: 0 15px;
+      }
+    }
+  </style>
 </head>
 
-  <body>
+<body>
   <!-- NAVBAR RESPONSIVE -->
-<nav class="navbar">
-  <div class="navbar-container">
-    <div class="logo">Eidolon Genesis</div>
-    <div class="menu-toggle" id="menu-toggle">&#9776;</div>
-    <ul class="nav-links" id="nav-links">
-      <li><a href="#hero">Home</a></li>
-      <li><a href="#manga">Manga</a></li>
-      <li><a href="#ambientazione">Ambientazione</a></li>
-      <li><a href="#personaggi">Personaggi</a></li>
-      <li><a href="#eidolon">Eidolon</a></li> 
-      <li><a href="#fazioni">Fazioni</a></li>
-      <li><a href="#contatti">Contatti</a></li>
-    </ul>
-  </div>
-</nav>
-    
+  <nav class="navbar">
+    <div class="navbar-container">
+      <!-- Hamburger -->
+      <div class="menu-toggle" id="menu-toggle">&#9776;</div>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#hero">Home</a></li>
+        <li><a href="#manga">Manga</a></li>
+        <li><a href="#ambientazione">Ambientazione</a></li>
+        <li><a href="#personaggi">Personaggi</a></li>
+        <li><a href="#eidolon">Eidolon</a></li> 
+        <li><a href="#fazioni">Fazioni</a></li>
+        <li><a href="#contatti">Contatti</a></li>
+      </ul>
+    </div>
+  </nav>
+
   <!-- Hero Section -->
-  <section id="hero">
+  <section id="hero" style="padding-top: 80px;">
     <div class="container">
       <h1>EIDOMA – The Creators</h1>
       <p>Studio manga emergente indipendente. Creatori di Eidolon Genesis.</p>
       <div style="text-align: center; margin: 40px 0;">
-  <img src="eidoma_logo.png" alt="Eidoma Logo" width="300">
-  <p style="font-family: 'Orbitron', sans-serif; color: #ccc; font-size: 16px; margin-top: 10px;">
-    Logo ufficiale di <strong>EIDOMA - The Creators</strong> </p>
-     </div>
+        <img src="eidoma_logo.png" alt="Eidoma Logo" width="300">
+        <p style="font-family: 'Orbitron', sans-serif; color: #ccc; font-size: 16px; margin-top: 10px;">
+          Logo ufficiale di <strong>EIDOMA - The Creators</strong>
+        </p>
+      </div>
+    </div>
   </section>
-  
   <!-- Sezione Manga -->
   <section id="manga">
     <div class="container">
@@ -202,17 +277,16 @@
     </a>
   </div>
 </section>
-<!--// Codice js qui -->
-    <script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const toggle = document.getElementById("menu-toggle");
-    const navLinks = document.getElementById("nav-links");
+  <!-- SCRIPT JS -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const toggle = document.getElementById("menu-toggle");
+      const navLinks = document.getElementById("nav-links");
 
-    toggle.addEventListener("click", () => {
-      navLinks.classList.toggle("active");
+      toggle.addEventListener("click", () => {
+        navLinks.classList.toggle("active");
+      });
     });
-  });
-    </script>
-    <!-- CHIUSURA BODY E HTML -->
+  </script>
 </body>
 </html>
