@@ -1,188 +1,49 @@
-/* === RESET BASE === */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+/*
 
-html, body {
-  height: 100%;
-  font-family: 'Orbitron', 'Segoe UI', sans-serif;
-  background-color: #0d0d0d;
-  color: #e0e0e0;
-  line-height: 1.6;
-  scroll-behavior: smooth;
-}
+Eidolon Genesis – style.css definitivo
 
-/* === NAVBAR === */
-nav {
-  background-color: #0f0f0f;
-  border-bottom: 1px solid #2a2a2a;
-  padding: 1rem 2rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  position: sticky;
-  top: 0;
-  z-index: 100;
-}
+Ispirato ai migliori siti anime + estetica unica EIDOMA */
 
-nav h1 {
-  font-size: 1.8rem;
-  letter-spacing: 2px;
-  color: #ffffff;
-  text-shadow: 0 0 5px #ff003c55;
-}
 
-nav ul {
-  list-style: none;
-  display: flex;
-  gap: 2rem;
-}
+/* Import Google Fonts */ @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&family=Unica+One&display=swap');
 
-nav ul li a {
-  text-decoration: none;
-  color: #cccccc;
-  transition: color 0.2s ease-in-out;
-}
+/* ===== BASE ===== */ :root { --nero-profondo: #0e0e11; --cenere: #2e2e38; --ghiaccio: #e2f1f7; --porpora-spento: #5a2249; --blu-cenere: #3c4a58; --vetro: rgba(255, 255, 255, 0.04); --glow: 0 0 12px rgba(255, 255, 255, 0.1); --font-primary: 'Orbitron', sans-serif; --font-title: 'Unica One', cursive; }
 
-nav ul li a:hover {
-  color: #ff003c;
-  text-shadow: 0 0 6px #ff003c88;
-}
+body { margin: 0; padding: 0; background-color: var(--nero-profondo); color: var(--ghiaccio); font-family: var(--font-primary); line-height: 1.6; overflow-x: hidden; }
 
-/* === HEADER === */
-header {
-  background: linear-gradient(to bottom, #121212, #000000);
-  padding: 6rem 2rem 3rem;
-  text-align: center;
-}
+/* ===== NAVBAR ===== */ nav { display: flex; justify-content: space-between; align-items: center; background: linear-gradient(to right, var(--blu-cenere), var(--porpora-spento)); padding: 1rem 2rem; box-shadow: var(--glow); position: sticky; top: 0; z-index: 1000; }
 
-header h2 {
-  font-size: 3rem;
-  margin-bottom: 1rem;
-  color: #f5f5f5;
-  text-shadow: 0 0 10px #ffffff22;
-}
+nav h1 { font-family: var(--font-title); font-size: 1.8rem; color: var(--ghiaccio); letter-spacing: 2px; }
 
-header p {
-  max-width: 700px;
-  margin: 0 auto;
-  font-size: 1.2rem;
-  color: #bbbbbb;
-}
+nav a { color: var(--ghiaccio); text-decoration: none; margin-left: 1.5rem; font-weight: 600; transition: 0.3s ease; }
 
-/* === SECTIONS === */
-section {
-  padding: 4rem 2rem;
-  max-width: 1000px;
-  margin: 0 auto;
-}
+nav a:hover { color: white; text-shadow: var(--glow); }
 
-section h3 {
-  font-size: 2rem;
-  margin-bottom: 1.5rem;
-  color: #ffffff;
-  border-bottom: 1px solid #2f2f2f;
-  padding-bottom: 0.5rem;
-}
+/* ===== HERO / INTRO ===== */ header { text-align: center; padding: 6rem 2rem 3rem; background: url('/img/texture_bg.jpg') no-repeat center center/cover; backdrop-filter: blur(4px); color: var(--ghiaccio); }
 
-section p {
-  margin-bottom: 1.5rem;
-  color: #cccccc;
-}
+header h2 { font-size: 2.5rem; letter-spacing: 1px; margin-bottom: 1rem; font-family: var(--font-title); }
 
-.character {
-  margin-bottom: 2rem;
-  padding: 1.5rem;
-  background: #181818;
-  border-left: 3px solid #ff003c;
-  box-shadow: 0 0 10px #ff003c22;
-  border-radius: 6px;
-}
+header p { max-width: 800px; margin: auto; opacity: 0.8; }
 
-.character h4 {
-  font-size: 1.3rem;
-  color: #ffffff;
-  margin-bottom: 0.5rem;
-}
+/* ===== SEZIONI GENERALI ===== */ section { padding: 4rem 2rem; max-width: 1100px; margin: auto; }
 
-.character p {
-  font-size: 1rem;
-  color: #bcbcbc;
-}
+section h3 { font-size: 2rem; color: white; margin-bottom: 1.5rem; border-bottom: 2px solid var(--porpora-spento); display: inline-block; padding-bottom: 0.3rem; }
 
-/* === FOOTER === */
-footer {
-  background-color: #0d0d0d;
-  color: #888888;
-  text-align: center;
-  padding: 2rem 0;
-  font-size: 0.9rem;
-  border-top: 1px solid #222;
-}
+/* ===== PERSONAGGI / FAZIONI ===== */ .card { background-color: var(--vetro); padding: 1.5rem; margin: 1rem 0; border-left: 4px solid var(--porpora-spento); box-shadow: var(--glow); transition: 0.3s ease; }
 
-/* === RESPONSIVE === */
-@media (max-width: 768px) {
-  nav ul {
-    flex-direction: column;
-    gap: 1rem;
-  }
+.card:hover { transform: translateY(-3px); background-color: rgba(255,255,255,0.03); }
 
-  header h2 {
-    font-size: 2.2rem;
-  }
+.card h4 { color: var(--ghiaccio); margin-bottom: 0.5rem; font-size: 1.3rem; font-weight: bold; }
 
-  section {
-    padding: 2rem 1.5rem;
-  }
+.card p { font-size: 0.95rem; opacity: 0.85; }
 
-  .character {
-    padding: 1rem;
-  }
-}
-<h2 class="glitch" data-text="EIDOLON GENESIS">EIDOLON GENESIS</h2>
+/* ===== RESPONSIVE ===== */ @media (max-width: 768px) { nav { flex-direction: column; align-items: flex-start; }
 
-.glitch {
-  position: relative;
-  color: #fff;
-  font-weight: bold;
-}
+nav a { margin: 0.5rem 0; }
 
-.glitch::before,
-.glitch::after {
-  content: attr(data-text);
-  position: absolute;
-  left: 0;
-  width: 100%;
-  overflow: hidden;
-}
+header h2 { font-size: 2rem; }
 
-.glitch::before {
-  animation: glitchTop 1s infinite linear alternate-reverse;
-  top: -2px;
-  color: #ff003c;
-}
+section h3 { font-size: 1.5rem; } }
 
-.glitch::after {
-  animation: glitchBottom 1s infinite linear alternate-reverse;
-  top: 2px;
-  color: #00fff9;
-}
+/* ===== FOOTER ===== */ footer { background-color: var(--cenere); color: var(--ghiaccio); text-align: center; padding: 2rem 1rem; margin-top: 4rem; font-size: 0.85rem; opacity: 0.6; }
 
-@keyframes glitchTop {
-  0% { clip: rect(0, 9999px, 0, 0); }
-  10% { clip: rect(0, 9999px, 2px, 0); }
-  20% { clip: rect(0, 9999px, 0, 0); }
-  30% { clip: rect(1px, 9999px, 3px, 0); }
-  100% { clip: rect(0, 9999px, 0, 0); }
-}
-
-@keyframes glitchBottom {
-  0% { clip: rect(2px, 9999px, 0, 0); }
-  10% { clip: rect(3px, 9999px, 1px, 0); }
-  20% { clip: rect(1px, 9999px, 2px, 0); }
-  30% { clip: rect(0, 9999px, 1px, 0); }
-  100% { clip: rect(2px, 9999px, 0, 0); }
-}
-*/
