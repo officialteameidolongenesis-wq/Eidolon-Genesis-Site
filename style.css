@@ -1,332 +1,43 @@
-/* ======== RESET E BASE ======== */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+/* =========================== CSS – EIDOLON GENESIS SITE Stile: oscuro, glitch-tech, urbano =========================== */
 
-html, body {
-  width: 100%;
-  overflow-x: hidden;
-}
+/* Reset base */
 
-body {
-  font-family: 'Segoe UI', sans-serif;
-  background-color: #0d0d0d;
-  color: #f0f0f0;
-  line-height: 1.6;
-  padding-top: 70px; /* spazio per navbar fissa */
-}
+{ margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
 
-/* ======== TYPOGRAPHY ======== */
-h1, h2, h3 {
-  color: #e6e6e6;
-  text-shadow: 0 0 6px rgba(255, 255, 255, 0.1);
-}
 
-h1 {
-  font-size: 2.8rem;
-  margin-bottom: 10px;
-}
+body { background-color: #0d0d0d; color: #f0f0f0; font-family: 'Orbitron', 'Segoe UI', sans-serif; line-height: 1.6; font-size: 16px; }
 
-h2 {
-  font-size: 2rem;
-  margin-top: 30px;
-  margin-bottom: 10px;
-  border-left: 4px solid #914e89;
-  padding-left: 10px;
-}
+header { background-color: #111; padding: 20px; border-bottom: 1px solid #444; }
 
-h3 {
-  font-size: 1.4rem;
-}
+nav { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; }
 
-p {
-  font-size: 1rem;
-  margin-bottom: 15px;
-  color: #d0d0d0;
-}
+.logo { font-size: 1.8rem; color: #e8308c; letter-spacing: 2px; font-weight: bold; }
 
-/* ======== LINK ======== */
-a {
-  color: #6ab0ff;
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
+nav ul { list-style: none; display: flex; gap: 25px; }
 
-a:hover {
-  color: #a9d2ff;
-}
+nav a { color: #f0f0f0; text-decoration: none; transition: 0.3s ease; }
 
-/* ======== NAVBAR ======== */
-.navbar {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  background-color: #111;
-  z-index: 1000;
-  box-shadow: none;
-  /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); */
+nav a:hover { color: #e8308c; text-shadow: 0 0 5px #e8308c; }
 
-.navbar-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 20px;
-}
+section { padding: 60px 20px; max-width: 1100px; margin: auto; }
 
-.logo {
-  color: #fff;
-  font-weight: bold;
-  font-size: 18px;
-}
+section h2 { font-size: 2rem; color: #e8308c; margin-bottom: 20px; border-left: 4px solid #e8308c; padding-left: 10px; }
 
-.nav-links {
-  list-style: none;
-  display: flex;
-  gap: 20px;
-  margin: 0;
-  padding: 0;
-}
+section p { color: #ccc; font-size: 1.1rem; margin-bottom: 20px; }
 
-.nav-links li a {
-  color: white;
-  text-decoration: none;
-}
+.character-card { background-color: #1a1a1a; padding: 20px; margin-bottom: 20px; border: 1px solid #333; border-radius: 6px; box-shadow: 0 0 10px rgba(232, 48, 140, 0.15); }
 
-/* Mobile navbar */
-.menu-toggle {
-  display: none;
-  font-size: 24px;
-  color: white;
-  cursor: pointer;
-}
+.character-card h3 { font-size: 1.3rem; color: #fff; margin-bottom: 8px; }
 
-@media (max-width: 768px) {
-  .nav-links {
-    display: none;
-    flex-direction: column;
-    background-color: #111;
-    position: absolute;
-    top: 60px;
-    left: 0;
-    width: 100%;
-    padding: 10px 0;
-  }
+.character-card p { color: #aaa; font-size: 1rem; }
 
-  .nav-links li {
-    text-align: center;
-    padding: 10px 0;
-  }
+footer { background-color: #111; text-align: center; padding: 30px 20px; border-top: 1px solid #444; color: #888; font-size: 0.9rem; margin-top: 50px; }
 
-  .nav-links.active {
-    display: flex;
-  }
+/* Hero section */ .hero { background: linear-gradient(180deg, #0d0d0d, #1a1a1a); text-align: center; padding: 100px 20px; }
 
-  .menu-toggle {
-    display: block;
-  }
-}
-/* ======== SEZIONI GENERALI ======== */
-section {
-  margin-bottom: 40px;
-  padding-bottom: 20px;
-  border-bottom: none; /* ← RIMOSSA la linea */
-}
+.hero h1 { font-size: 3rem; color: #e8308c; margin-bottom: 20px; }
 
-.container {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 40px 20px;
-}
+.hero p { font-size: 1.2rem; color: #bbb; max-width: 700px; margin: 0 auto; }
 
-/* ======== EIDOLON SECTION ======== */
-.eidolon-section {
-  background-color: #0b0b0b;
-  color: #f1f1f1;
-  padding: 60px 20px;
-  text-align: left;
-  border-top: 2px solid #444;
-}
+@media (max-width: 768px) { nav ul { flex-direction: column; gap: 15px; } .hero h1 { font-size: 2.2rem; } .hero p { font-size: 1rem; } section h2 { font-size: 1.6rem; } }
 
-.eidolon-section h2 {
-  font-size: 2rem;
-  color: #e64561;
-  margin-bottom: 20px;
-}
-
-.eidolon-desc {
-  font-size: 1.1rem;
-  line-height: 1.7;
-  margin-bottom: 20px;
-  color: #ccc;
-}
-
-.eidolon-quote {
-  font-size: 1.2rem;
-  font-style: italic;
-  color: #9cf;
-  margin: 30px 0;
-  text-align: center;
-}
-
-.eidolon-points {
-  list-style: none;
-  padding-left: 0;
-  margin-top: 20px;
-}
-
-.eidolon-points li {
-  margin-bottom: 15px;
-  font-size: 1rem;
-  color: #f1f1f1;
-}
-
-.eidolon-lastline {
-  font-size: 1.2rem;
-  color: #e64561;
-  margin-top: 30px;
-  text-align: center;
-}
-
-/* RIMOSSI i separator glowing che creavano la linea visiva */
-#ambientazione::before,
-#ambientazione::after {
-  display: none;
-}
-
-/* ======== AMBIENTAZIONE ======== */
-#ambientazione {
-  background-color: #0e0e11;
-  color: #d6d6e0;
-  padding: 60px 20px;
-  border-top: none;
-  border-bottom: none;
-}
-
-#ambientazione h2 {
-  font-size: 2.5em;
-  color: #e63946;
-  text-align: center;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-}
-
-#ambientazione h3 {
-  font-size: 1.6em;
-  color: #88c0d0;
-  border-left: 4px solid #88c0d0;
-  padding-left: 10px;
-}
-
-#ambientazione p {
-  font-size: 1.05em;
-  color: #e0e0e0;
-  max-width: 800px;
-  margin: 0 auto 20px;
-}
-
-/* ======== FAZIONI ======== */
-#fazioni {
-  background-color: #0d0d0d;
-  color: #f0f0f0;
-  padding: 60px 20px;
-}
-
-.faction-list {
-  margin-top: 40px;
-  display: flex;
-  flex-direction: column;
-  gap: 40px;
-}
-
-.faction h3 {
-  font-size: 1.4em;
-  color: #a6d4ff;
-  margin-bottom: 8px;
-}
-
-.faction p em {
-  font-style: italic;
-  color: #999;
-  margin-bottom: 10px;
-}
-
-.faction p strong {
-  margin-top: 10px;
-  color: #ff7474;
-}
-
-/* ======== CHARACTER ======== */
-.character {
-  margin-top: 20px;
-  padding: 15px;
-  background-color: #1a1a1a;
-  border-left: 5px solid #914e89;
-  border-radius: 5px;
-  box-shadow: 0 0 8px rgba(255, 255, 255, 0.03);
-}
-
-/* ======== CONTATTI & BUTTON ======== */
-#contatti p {
-  font-size: 1.2em;
-  margin-bottom: 30px;
-}
-
-.instagram-button {
-  display: inline-block;
-  background-color: #c13584;
-  color: white;
-  padding: 12px 24px;
-  border-radius: 30px;
-  font-weight: bold;
-  font-size: 16px;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-  text-decoration: none;
-}
-
-.instagram-button:hover {
-  background-color: #e1306c;
-  transform: scale(1.05);
-}
-
-/* ======== FOOTER ======== */
-footer {
-  margin-top: 50px;
-  padding-top: 20px;
-  border-top: 1px solid #222;
-  text-align: center;
-  font-size: 0.9rem;
-  color: #888;
-}
-
-footer a {
-  color: #c474ff;
-}
-
-/* ======== MOBILE ======== */
-@media (max-width: 600px) {
-  h1 {
-    font-size: 2rem;
-  }
-
-  h2 {
-    font-size: 1.5rem;
-  }
-
-  p {
-    font-size: 0.95rem;
-  }
-}
-.navbar {
-  background: #0d0d0d !important;
-  background-image: none !important;
-  box-shadow: none !important;
-  border-bottom: none !important;
-}
-
-.navbar::after,
-.navbar::before {
-  display: none !important;
-  content: none !important;
-}
