@@ -1,0 +1,37 @@
+/* =========================
+   Eidolon Genesis - Styles
+   File: index.css
+   Descrizione: Stili globali e base del sito
+   ========================= */
+
+/* Import Tailwind layers */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Import Google Fonts (opzionale, esempio) */
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&display=swap');
+
+/* Stili globali */
+html, body {
+  @apply bg-black text-white font-sans;
+  font-family: 'Rajdhani', sans-serif;
+  scroll-behavior: smooth;
+}
+
+a {
+  @apply text-blue-400 transition-colors duration-200;
+}
+a:hover {
+  @apply text-blue-300;
+}
+
+/* Titoli */
+h1, h2, h3, h4, h5, h6 {
+  @apply font-bold;
+}
+
+/* Contenitore centrato */
+.container {
+  @apply max-w-7xl mx-auto px-4;
+}
