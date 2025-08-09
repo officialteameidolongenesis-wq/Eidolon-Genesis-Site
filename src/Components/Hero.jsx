@@ -8,9 +8,9 @@ const Hero = () => {
       id="hero"
       className="relative h-screen flex items-center justify-center text-center text-white"
       style={{
-        backgroundImage: `url(${bgHero})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
+  backgroundImage: "url('/Eidolongenesislogo.png')",
+  backgroundSize: "cover",
+  backgroundPosition: "center",
       }}
     >
       {/* Overlay scuro */}
