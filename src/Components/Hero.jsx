@@ -1,6 +1,6 @@
 // src/components/Hero.jsx
 import React from "react";
-import bgHero from "/bg-hero.jpg";
+import bgHero from "/Eidolongenesiseye.jpg";
 
 const Hero = () => {
   return (
