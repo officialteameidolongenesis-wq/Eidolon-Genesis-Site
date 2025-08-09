@@ -1,49 +1,164 @@
 /*
+=====================================
+ Eidolon Genesis – style.css definitivo
+ Ispirato ai migliori siti anime
+ + estetica unica EIDOMA
+=====================================
+*/
 
-Eidolon Genesis – style.css definitivo
+/* ===== Import Google Fonts ===== */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&family=Unica+One&display=swap');
 
-Ispirato ai migliori siti anime + estetica unica EIDOMA */
+/* ===== Variabili globali ===== */
+:root {
+  --nero-profondo: #0e0e11;
+  --cenere: #2e2e38;
+  --ghiaccio: #e2f1f7;
+  --porpora-spento: #5a2249;
+  --blu-cenere: #3c4a58;
+  --vetro: rgba(255, 255, 255, 0.04);
+  --glow: 0 0 12px rgba(255, 255, 255, 0.1);
 
+  --font-primary: 'Orbitron', sans-serif;
+  --font-title: 'Unica One', cursive;
+}
 
-/* Import Google Fonts */ @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&family=Unica+One&display=swap');
+/* ===== Base ===== */
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--nero-profondo);
+  color: var(--ghiaccio);
+  font-family: var(--font-primary);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
 
-/* ===== BASE ===== */ :root { --nero-profondo: #0e0e11; --cenere: #2e2e38; --ghiaccio: #e2f1f7; --porpora-spento: #5a2249; --blu-cenere: #3c4a58; --vetro: rgba(255, 255, 255, 0.04); --glow: 0 0 12px rgba(255, 255, 255, 0.1); --font-primary: 'Orbitron', sans-serif; --font-title: 'Unica One', cursive; }
+/* ===== Navbar ===== */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(to right, var(--blu-cenere), var(--porpora-spento));
+  padding: 1rem 2rem;
+  box-shadow: var(--glow);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
 
-body { margin: 0; padding: 0; background-color: var(--nero-profondo); color: var(--ghiaccio); font-family: var(--font-primary); line-height: 1.6; overflow-x: hidden; }
+nav h1 {
+  font-family: var(--font-title);
+  font-size: 1.8rem;
+  color: var(--ghiaccio);
+  letter-spacing: 2px;
+}
 
-/* ===== NAVBAR ===== */ nav { display: flex; justify-content: space-between; align-items: center; background: linear-gradient(to right, var(--blu-cenere), var(--porpora-spento)); padding: 1rem 2rem; box-shadow: var(--glow); position: sticky; top: 0; z-index: 1000; }
+nav a {
+  color: var(--ghiaccio);
+  text-decoration: none;
+  margin-left: 1.5rem;
+  font-weight: 600;
+  transition: 0.3s ease;
+}
 
-nav h1 { font-family: var(--font-title); font-size: 1.8rem; color: var(--ghiaccio); letter-spacing: 2px; }
+nav a:hover {
+  color: white;
+  text-shadow: var(--glow);
+}
 
-nav a { color: var(--ghiaccio); text-decoration: none; margin-left: 1.5rem; font-weight: 600; transition: 0.3s ease; }
+/* ===== Hero / Intro ===== */
+header {
+  text-align: center;
+  padding: 6rem 2rem 3rem;
+  background: url('/img/texture_bg.jpg') no-repeat center center / cover;
+  backdrop-filter: blur(4px);
+  color: var(--ghiaccio);
+}
 
-nav a:hover { color: white; text-shadow: var(--glow); }
+header h2 {
+  font-size: 2.5rem;
+  letter-spacing: 1px;
+  margin-bottom: 1rem;
+  font-family: var(--font-title);
+}
 
-/* ===== HERO / INTRO ===== */ header { text-align: center; padding: 6rem 2rem 3rem; background: url('/img/texture_bg.jpg') no-repeat center center/cover; backdrop-filter: blur(4px); color: var(--ghiaccio); }
+header p {
+  max-width: 800px;
+  margin: auto;
+  opacity: 0.8;
+}
 
-header h2 { font-size: 2.5rem; letter-spacing: 1px; margin-bottom: 1rem; font-family: var(--font-title); }
+/* ===== Sezioni generali ===== */
+section {
+  padding: 4rem 2rem;
+  max-width: 1100px;
+  margin: auto;
+}
 
-header p { max-width: 800px; margin: auto; opacity: 0.8; }
+section h3 {
+  font-size: 2rem;
+  color: white;
+  margin-bottom: 1.5rem;
+  border-bottom: 2px solid var(--porpora-spento);
+  display: inline-block;
+  padding-bottom: 0.3rem;
+}
 
-/* ===== SEZIONI GENERALI ===== */ section { padding: 4rem 2rem; max-width: 1100px; margin: auto; }
+/* ===== Personaggi / Fazioni ===== */
+.card {
+  background-color: var(--vetro);
+  padding: 1.5rem;
+  margin: 1rem 0;
+  border-left: 4px solid var(--porpora-spento);
+  box-shadow: var(--glow);
+  transition: 0.3s ease;
+}
 
-section h3 { font-size: 2rem; color: white; margin-bottom: 1.5rem; border-bottom: 2px solid var(--porpora-spento); display: inline-block; padding-bottom: 0.3rem; }
+.card:hover {
+  transform: translateY(-3px);
+  background-color: rgba(255, 255, 255, 0.03);
+}
 
-/* ===== PERSONAGGI / FAZIONI ===== */ .card { background-color: var(--vetro); padding: 1.5rem; margin: 1rem 0; border-left: 4px solid var(--porpora-spento); box-shadow: var(--glow); transition: 0.3s ease; }
+.card h4 {
+  color: var(--ghiaccio);
+  margin-bottom: 0.5rem;
+  font-size: 1.3rem;
+  font-weight: bold;
+}
 
-.card:hover { transform: translateY(-3px); background-color: rgba(255,255,255,0.03); }
+.card p {
+  font-size: 0.95rem;
+  opacity: 0.85;
+}
 
-.card h4 { color: var(--ghiaccio); margin-bottom: 0.5rem; font-size: 1.3rem; font-weight: bold; }
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+  nav {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 
-.card p { font-size: 0.95rem; opacity: 0.85; }
+  nav a {
+    margin: 0.5rem 0;
+  }
 
-/* ===== RESPONSIVE ===== */ @media (max-width: 768px) { nav { flex-direction: column; align-items: flex-start; }
+  header h2 {
+    font-size: 2rem;
+  }
 
-nav a { margin: 0.5rem 0; }
+  section h3 {
+    font-size: 1.5rem;
+  }
+}
 
-header h2 { font-size: 2rem; }
-
-section h3 { font-size: 1.5rem; } }
-
-/* ===== FOOTER ===== */ footer { background-color: var(--cenere); color: var(--ghiaccio); text-align: center; padding: 2rem 1rem; margin-top: 4rem; font-size: 0.85rem; opacity: 0.6; }
-
+/* ===== Footer ===== */
+footer {
+  background-color: var(--cenere);
+  color: var(--ghiaccio);
+  text-align: center;
+  padding: 2rem 1rem;
+  margin-top: 4rem;
+  font-size: 0.85rem;
+  opacity: 0.6;
+}
