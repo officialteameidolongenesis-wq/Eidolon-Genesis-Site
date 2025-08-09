@@ -1,49 +1,48 @@
-/* FONT & COLORI */
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&family=Unica+One&display=swap');
 
 :root {
-  --nero: #0e0e11;
-  --blu-cenere: #3c4a58;
-  --porpora: #5a2249;
+  --nero-profondo: #0e0e11;
+  --cenere: #2e2e38;
   --ghiaccio: #e2f1f7;
-  --vetro: rgba(255,255,255,0.05);
-  --glow: 0 0 12px rgba(255,255,255,0.2);
+  --porpora-spento: #5a2249;
+  --blu-cenere: #3c4a58;
+  --vetro: rgba(255, 255, 255, 0.04);
+  --glow: 0 0 12px rgba(255, 255, 255, 0.1);
+  --font-primary: 'Orbitron', sans-serif;
+  --font-title: 'Unica One', cursive;
 }
 
-/* RESET BASE */
 body {
   margin: 0;
-  background-color: var(--nero);
+  background-color: var(--nero-profondo);
   color: var(--ghiaccio);
-  font-family: 'Orbitron', sans-serif;
+  font-family: var(--font-primary);
   overflow-x: hidden;
 }
 
 /* NAVBAR */
 nav {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  padding: 1rem 2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: rgba(15,15,20,0.7);
-  backdrop-filter: blur(8px);
+  background: linear-gradient(to right, var(--blu-cenere), var(--porpora-spento));
+  padding: 1rem 2rem;
+  position: sticky;
+  top: 0;
   box-shadow: var(--glow);
   z-index: 1000;
 }
 
 nav h1 {
-  font-family: 'Unica One', cursive;
-  font-size: 1.5rem;
+  font-family: var(--font-title);
+  font-size: 1.8rem;
 }
 
 nav a {
   color: var(--ghiaccio);
-  margin-left: 1rem;
   text-decoration: none;
-  transition: 0.3s;
+  margin-left: 1.5rem;
+  transition: 0.3s ease;
 }
 
 nav a:hover {
@@ -52,47 +51,44 @@ nav a:hover {
 }
 
 /* HERO */
-.hero {
-  height: 100vh;
-  background: url('img/hero-bg.jpg') no-repeat center/cover;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+header {
   text-align: center;
+  padding: 6rem 2rem 3rem;
+  background: url('img/texture_bg.jpg') no-repeat center/cover;
+  color: var(--ghiaccio);
+  animation: fadeIn 2s ease-in-out;
 }
 
-.hero-content {
-  background: rgba(0,0,0,0.4);
-  padding: 2rem;
-  border-radius: 10px;
-  box-shadow: var(--glow);
-  animation: fadeIn 2s ease-out;
-}
-
-.hero h2 {
-  font-family: 'Unica One', cursive;
+header h2 {
   font-size: 2.5rem;
-}
-
-.hero p {
-  font-size: 1rem;
-  opacity: 0.85;
+  font-family: var(--font-title);
 }
 
 /* SEZIONI */
 section {
+  padding: 4rem 2rem;
   max-width: 1100px;
   margin: auto;
-  padding: 5rem 2rem;
 }
 
 section h3 {
-  border-bottom: 2px solid var(--porpora);
+  font-size: 2rem;
+  border-bottom: 2px solid var(--porpora-spento);
   display: inline-block;
   padding-bottom: 0.3rem;
 }
 
-/* ANIMAZIONI */
+/* FOOTER */
+footer {
+  background-color: var(--cenere);
+  color: var(--ghiaccio);
+  text-align: center;
+  padding: 2rem 1rem;
+  font-size: 0.85rem;
+  opacity: 0.6;
+}
+
+/* Animazioni */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
