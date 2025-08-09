@@ -8,7 +8,7 @@ export const siteContent = {
   title: "Eidolon Genesis",
   subtitle: "Fratture Animiche Catalizzate in un mondo post-Cataclisma",
   email: "official.team.eidolon.genesis@gmail.com",
-  instagram: "https://instagram.com/eidolon_genesis_project__", // Sostituire col link corretto
+  instagram: "https://www.instagram.com/eidolon_genesis_project__?igsh=dnRmdWplcjV6NWg2", // Sostituire col link corretto
 
   characters: [
     {
