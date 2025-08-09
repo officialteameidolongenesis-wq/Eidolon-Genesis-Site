@@ -8,14 +8,14 @@ export const siteContent = {
   title: "Eidolon Genesis",
   subtitle: "Fratture Animiche Catalizzate in un mondo post-Cataclisma",
   email: "official.team.eidolon.genesis@gmail.com",
-  instagram: "https://instagram.com/tuo_profilo_instagram", // Sostituire col link corretto
+  instagram: "https://instagram.com/eidolon_genesis_project__", // Sostituire col link corretto
 
   characters: [
     {
       name: "Kamiya Kazushiro",
       age: 11,
       role: "Protagonista",
-      description: "Un ragazzo segnato dal trauma, alla ricerca della verità dietro gli Eidolon.",
+      description: "Un ragazzo segnato dal trauma, alla ricerca della verità dietro alle sue strane percezioni e la scomparsa della madre.",
     },
     {
       name: "Ema Kazushiro",
@@ -26,12 +26,12 @@ export const siteContent = {
     {
       name: "Vista Kazushiro",
       role: "Padre di Kamiya e di Ema",
-      description: "Figura enigmatica, portatore di segreti legati agli Alberi di Nirn.",
+      description: "Padre determinato e diligente in tutto quello che faceva,ex tecnico dell'Arca e membro dell'esercito",
     },
     {
       name: "Mika Kazushiro",
       role: "Madre di Kamiya e di Ema",
-      description: "Solare e misteriosa, con un legame nascosto con i fenomeni instabili.",
+      description: "Solare e misteriosa, con un legame nascosto con i fenomeni instabili, attualmente dispersa.",
     },
   ],
 
