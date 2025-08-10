@@ -6,7 +6,12 @@ const Hero = () => {
     <section
       id="hero"
       className="relative h-screen flex items-center justify-center text-center text-white bg-cover bg-center"
-      style={{ backgroundImage: "url('/Eidolongenesislogo.png')" }}
+      <section
+  id="hero"
+  className="relative h-screen flex items-center justify-center text-center text-white bg-cover bg-center"
+  style={{
+    backgroundImage: "url('https://raw.githubusercontent.com/<officialteameidolongenesis-wq>/<Eidolon-Genesis-Site>/main/Eidolongenesislogo.png')"
+  }}
     >
       {/* Overlay scuro */}
       <div className="absolute inset-0 bg-black bg-opacity-60"></div>
