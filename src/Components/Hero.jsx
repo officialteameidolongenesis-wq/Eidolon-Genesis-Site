@@ -8,7 +8,7 @@ const Hero = () => {
       id="hero"
       className="relative h-screen flex items-center justify-center text-center text-white"
       style={{
-      backgroundImage: "url('Eidolongenesislogo.png')",
+  backgroundImage: "url('/Eidolongenesislogo.png')"}}
       backgroundSize: "cover",
       backgroundPosition: "center",
       }}
