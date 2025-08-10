@@ -1,17 +1,12 @@
 // src/Components/Hero.jsx
 import React from "react";
-import bgHero from "/Eidolongenesiseye.jpg";
 
 const Hero = () => {
   return (
     <section
       id="hero"
-      className="relative h-screen flex items-center justify-center text-center text-white"
-      style={{
-  backgroundImage: "url('/Eidolongenesislogo.png')"}}
-      backgroundSize: "cover",
-      backgroundPosition: "center",
-      }}
+      className="relative h-screen flex items-center justify-center text-center text-white bg-cover bg-center"
+      style={{ backgroundImage: "url('/Eidolongenesislogo.png')" }}
     >
       {/* Overlay scuro */}
       <div className="absolute inset-0 bg-black bg-opacity-60"></div>
