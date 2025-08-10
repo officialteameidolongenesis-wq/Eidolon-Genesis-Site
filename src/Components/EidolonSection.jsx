@@ -1,4 +1,4 @@
-// src/components/EidolonSection.jsx
+// src/Components/EidolonSection.jsx
 import React from "react";
 
 const EidolonSection = () => {
