@@ -1,4 +1,4 @@
-// src/components/App.jsx
+// src/Components/App.jsx
 import React from "react";
 import Navbar from "./Navbar";
 import Hero from "./Hero";
