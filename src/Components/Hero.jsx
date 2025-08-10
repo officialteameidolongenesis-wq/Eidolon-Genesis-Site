@@ -1,14 +1,17 @@
+import React from "react";
+import bgHero from "../Eidolongenesislogo.png"; // importa l'immagine dalla root
+
 export default function Hero() {
   return (
     <section
-      className="h-screen flex items-center justify-center bg-cover bg-center"
-      style={{
-        backgroundImage: `url('https://raw.githubusercontent.com/officialteameidolongenesis-wq/Eidolon-Genesis-Site/main/Eidolongenesislogo.png')`,
-      }}
+      id="hero"
+      className="relative h-screen flex items-center justify-center text-center text-white bg-cover bg-center"
+      style={{ backgroundImage: `url(${bgHero})` }}
     >
-      <h1 className="text-white text-6xl font-bold bg-black/50 p-4 rounded-lg">
-        TEST BACKGROUND
-      </h1>
+      <div className="bg-black bg-opacity-50 p-8 rounded-lg">
+        <h1 className="text-4xl md:text-6xl font-bold">Eidolon Genesis</h1>
+        <p className="mt-4 text-lg md:text-2xl">Benvenuto nel mondo post-Cataclisma</p>
+      </div>
     </section>
   );
 }
