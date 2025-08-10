@@ -1,7 +1,8 @@
+// vite.config.js
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
 export default defineConfig({
   plugins: [react()],
-  base: '/Eidolon-Genesis-Site/', // nome repo esatto
+  base: '/Eidolon-Genesis-Site/', // deve corrispondere ESATTAMENTE al nome della repo
 })
