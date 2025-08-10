@@ -1,4 +1,4 @@
-// src/components/Hero.jsx
+// src/Components/Hero.jsx
 import React from "react";
 import bgHero from "/Eidolongenesiseye.jpg";
 
