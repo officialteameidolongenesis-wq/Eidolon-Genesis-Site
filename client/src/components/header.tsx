@@ -1,5 +1,5 @@
 import { useState } from "react";
-import studioLogo from "@assets/Eidolongenesislogo-v2.png";
+import studioLogo from "@assets/Eidomalogo.png";
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
