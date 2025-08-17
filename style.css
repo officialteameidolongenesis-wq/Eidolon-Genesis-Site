@@ -62,27 +62,61 @@ body::before{
 /* ---------- Container helper ---------- */
 .container{ width:100%; max-width:var(--container-w); margin:0 auto; padding:0 20px; position:relative; z-index:2; }
 
-/* ---------- Navbar ---------- */
-.nav-wrap{ position:sticky; top:0; z-index:120; background: rgba(11,11,13,0.55); backdrop-filter: blur(6px); border-bottom:1px solid var(--stroke); }
-.navbar{ display:flex; align-items:center; justify-content:space-between; height:64px; gap:12px; }
+/* ---------- NAVBAR - restore semplice + mobile ---------- */
+.nav-wrap{
+  position:sticky;
+  top:0;
+  z-index:120;
+  background: rgba(11,11,13,0.55);      /* leggermente trasparente */
+  backdrop-filter: blur(6px);            /* sfocatura dietro la navbar */
+  -webkit-backdrop-filter: blur(6px);
+  border-bottom:1px solid rgba(255,255,255,0.03);
+}
+
+/* layout principale della navbar */
+.navbar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  height:64px;
+  padding:0 16px;
+}
+
+/* brand */
 .brand{ display:flex; align-items:center; gap:10px; }
-.logo{ width:40px; height:40px; object-fit:cover; border-radius:8px; border:1px solid var(--stroke); background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.15)); }
+.logo{ width:40px; height:40px; object-fit:cover; border-radius:8px; border:1px solid rgba(255,255,255,0.04); background:transparent; }
 .site-title{ font-family:"Orbitron", sans-serif; letter-spacing:.08em; font-weight:700; color:var(--text); }
 
-/* nav links */
-.navpanel{ display:flex; align-items:center; gap:20px; z-index:120; }
+/* links */
+.navpanel{ display:flex; align-items:center; gap:20px; }
 .navlinks{ display:flex; gap:18px; list-style:none; margin:0; padding:0; align-items:center; }
-.navlinks a{ color:var(--text); opacity:.9; padding:6px 10px; border-radius:8px; font-weight:600; transition:var(--transition); }
-.navlinks a:hover{ color:var(--accent); transform:translateY(-2px); background:rgba(159,214,228,0.02); }
+.navlinks a{ color:var(--text); opacity:.95; padding:6px 8px; border-radius:8px; font-weight:600; transition:var(--transition); }
+.navlinks a:hover{ color:var(--accent); transform:translateY(-2px); }
 
-/* CTA social */
+/* social CTA */
 .social-cta{ display:flex; align-items:center; gap:8px; }
-.ig-btn{ display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:10px; border:1px solid var(--stroke); color:var(--text); background: linear-gradient(90deg, rgba(159,214,228,0.02), rgba(90,34,73,0.01)); font-weight:700; }
-.ig-btn:hover{ transform:translateY(-3px); border-color:rgba(159,214,228,0.35); color:var(--accent); }
+.ig-btn{ display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:10px; border:1px solid rgba(255,255,255,0.03); color:var(--text); background:transparent; font-weight:700; }
+.ig-btn:hover{ color:var(--accent); }
 
-/* hamburger (mobile) */
+/* hamburger - mobile */
 .hamburger{ display:none; background:none; border:0; width:44px; height:40px; padding:6px; }
 .hamburger span{ display:block; height:2px; background:var(--text); margin:6px 0; border-radius:4px; transition:var(--transition); }
+
+/* mobile nav panel (behaviour già presente altrove) */
+@media (max-width: 860px){
+  .hamburger{ display:inline-block; }
+  .navpanel{
+    position:fixed; top:64px; left:0; right:0;
+    background: rgba(12,12,16,0.98);
+    border-bottom:1px solid rgba(255,255,255,0.03);
+    transform:translateY(-8px); opacity:0; pointer-events:none;
+    transition:200ms ease; padding:14px 18px; flex-direction:column; align-items:flex-start; gap:12px;
+    z-index:140;
+  }
+  .navpanel.open{ transform:translateY(0); opacity:1; pointer-events:auto; }
+  .navlinks{ flex-direction:column; gap:10px; width:100%; }
+}
 
 /* ---------- Hero ---------- */
 /* hero-bg is the element responsible for the full cover image for the hero section.
@@ -125,32 +159,25 @@ body::before{
 /* small helper */
 .visually-hidden{ position:absolute!important; height:1px; width:1px; overflow:hidden; clip:rect(1px,1px,1px,1px); white-space:nowrap; }
 
-/* ---------- Sections: glass panels so watermark shows ---------- */
-/* Instead of solid black, use semi-transparent layered backgrounds + blur.
-   This keeps text legibile and lets the big logo faintly show behind. */
+/* Glass blur più evidente: sezioni traslucide che lasciano intravedere il watermark */
 .section{
   padding:72px 0;
   position:relative;
   z-index:2;
 
-  /* glass-like background that allows watermark to show beneath */
-  .section{
-  background: linear-gradient(180deg, rgba(8,8,10,0.35), rgba(8,8,10,0.45));
-  backdrop-filter: blur(5px) saturate(0.95);
-  -webkit-backdrop-filter: blur(6px) saturate(0.98);
+  /* rendiamo più "vetroso" e più trasparente per far vedere il logo dietro */
+  background: linear-gradient(180deg, rgba(8,8,10,0.36), rgba(8,8,10,0.45));
+  backdrop-filter: blur(8px) saturate(0.95);
+  -webkit-backdrop-filter: blur(8px) saturate(0.95);
+
   border-top: 1px solid rgba(255,255,255,0.02);
   color:var(--text);
 }
 
-/* slightly different tone for alternate sections */
-.section.alt{
-  background: linear-gradient(180deg, rgba(11,11,13,0.28), rgba(12,12,16,0.38));
-}
-
-/* small, more opaque content panels if you need absolute contrast */
+/* se vuoi sezioni con contrasto massimo (uso interno) */
 .content-panel{
-  background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
-  border:1px solid var(--stroke);
+  background: linear-gradient(180deg, rgba(0,0,0,0.55), rgba(0,0,0,0.62));
+  border:1px solid rgba(255,255,255,0.04);
   border-radius:12px;
   padding:18px;
   box-shadow:var(--shadow);
