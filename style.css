@@ -1,8 +1,8 @@
 /* =========================
-   style.css - Eidolon Genesis (aggiornato)
+   style.css - Eidolon Genesis (unito + section-panel)
    Put images in /public:
-     - /Eidolongenesislogo-v2.png   <= grande logo per hero / watermark
-     - /public/Eidomalogo.png       <= piccolo logo per navbar
+     - /Eidolongenesislogo-v2.png
+     - /Eidomalogo.png
    ========================= */
 
 /* ---------- Reset minimo ---------- */
@@ -60,15 +60,22 @@ body::before{
 }
 
 /* ---------- Container helper ---------- */
-.container{ width:100%; max-width:var(--container-w); margin:0 auto; padding:0 20px; position:relative; z-index:2; }
+.container{
+  width:100%;
+  max-width:var(--container-w);
+  margin:0 auto;
+  padding:0 20px;
+  position:relative;
+  z-index:2;
+}
 
 /* ---------- NAVBAR - restore semplice + mobile ---------- */
 .nav-wrap{
   position:sticky;
   top:0;
   z-index:120;
-  background: rgba(11,11,13,0.55);      /* leggermente trasparente */
-  backdrop-filter: blur(6px);            /* sfocatura dietro la navbar */
+  background: rgba(11,11,13,0.55);
+  backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
   border-bottom:1px solid rgba(255,255,255,0.03);
 }
@@ -103,7 +110,7 @@ body::before{
 .hamburger{ display:none; background:none; border:0; width:44px; height:40px; padding:6px; }
 .hamburger span{ display:block; height:2px; background:var(--text); margin:6px 0; border-radius:4px; transition:var(--transition); }
 
-/* mobile nav panel (behaviour già presente altrove) */
+/* mobile nav panel */
 @media (max-width: 860px){
   .hamburger{ display:inline-block; }
   .navpanel{
@@ -119,21 +126,18 @@ body::before{
 }
 
 /* ---------- Hero ---------- */
-/* hero-bg is the element responsible for the full cover image for the hero section.
-   It will sit above the global watermark but behind hero-content. */
 .hero{ position:relative; min-height:82vh; display:grid; place-items:center; overflow:hidden; border-bottom:1px solid var(--stroke); }
 .hero-bg{
   position:absolute; inset:0; z-index:1;
   background-image: url('/Eidolongenesislogo-v2.png'); /* ensure file is in /public */
   background-position: center center;
   background-repeat: no-repeat;
-  background-size: cover; /* cover to fill the viewport */
+  background-size: cover;
   filter: contrast(.95) brightness(.45) saturate(.9);
   transform: scale(1.03);
   transition: transform 30s linear;
   pointer-events:none;
   opacity:0.95;
-  /* fixed attachment only on desktop for that parallax-like watermark feel */
   background-attachment: fixed;
 }
 .hero-bg::after{
@@ -142,7 +146,7 @@ body::before{
   background: linear-gradient(180deg, rgba(0,0,0,.45) 0%, rgba(0,0,0,.65) 60%, rgba(0,0,0,.85) 100%);
   mix-blend-mode:multiply;
 }
-.hero:hover .hero-bg{ transform: scale(1.05); } /* subtle slow zoom on hover */
+.hero:hover .hero-bg{ transform: scale(1.05); }
 
 .hero-content{ position:relative; z-index:3; text-align:center; max-width:920px; padding:48px 20px; }
 .hero-title{ font-family:"Orbitron", sans-serif; font-size:clamp(28px, 4.5vw, 54px); margin:0 0 12px; line-height:1.05; color:var(--text); letter-spacing:.02em; }
@@ -165,13 +169,37 @@ body::before{
   position:relative;
   z-index:2;
 
-  /* rendiamo più "vetroso" e più trasparente per far vedere il logo dietro */
+  /* più trasparente per far vedere il logo dietro */
   background: linear-gradient(180deg, rgba(8,8,10,0.36), rgba(8,8,10,0.45));
   backdrop-filter: blur(8px) saturate(0.95);
   -webkit-backdrop-filter: blur(8px) saturate(0.95);
 
   border-top: 1px solid rgba(255,255,255,0.02);
   color:var(--text);
+}
+
+/* PANEL: centrare il contenuto con effetto glassic */
+.section .section-panel{
+  width:100%;
+  max-width:1000px;
+  margin:0 auto;
+  padding:28px 22px;
+  background: linear-gradient(180deg, rgba(8,8,10,0.52), rgba(8,8,10,0.58));
+  backdrop-filter: blur(10px) saturate(.95);
+  -webkit-backdrop-filter: blur(10px) saturate(.95);
+  border-radius:14px;
+  border:1px solid rgba(255,255,255,0.04);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.45);
+  box-sizing:border-box;
+}
+
+/* fallback automatico (se non vuoi toccare HTML) applica la behavior anche alla .container dentro <section> */
+.section > .container {
+  max-width:1000px;
+  margin-left:auto;
+  margin-right:auto;
+  padding-top:10px;
+  padding-bottom:10px;
 }
 
 /* se vuoi sezioni con contrasto massimo (uso interno) */
@@ -187,7 +215,7 @@ body::before{
 .section-title{ font-family:"Orbitron", sans-serif; font-size:clamp(22px, 3.2vw, 32px); margin:0 0 18px; color:var(--text); }
 .lead{ color:#c7d0d8; margin:0 0 22px; }
 
-/* Cards */
+/* Cards - default look */
 .card{ background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01)); border:1px solid var(--stroke); border-left:3px solid rgba(159,214,228,.35); border-radius:14px; padding:18px 16px; box-shadow:var(--shadow); }
 .card h3{ margin:0 0 8px; font-weight:700; }
 .card p{ margin:0; color:#cbd4da; }
@@ -202,7 +230,13 @@ body::before{
 .faction .motto{ color:var(--accent); font-weight:600; margin:.15rem 0 .5rem; }
 
 /* ---------- FAQ (interattiva) ---------- */
-.faq-grid{ display:grid; grid-template-columns: repeat(3, 1fr); gap:16px; }
+/* responsive FAQ grid */
+.faq-grid{
+  width:100%;
+  display:grid;
+  gap:16px;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
 .faq-item{ background:var(--card); border:1px solid var(--stroke); padding:16px; border-radius:12px; transition:var(--transition); cursor:pointer; position:relative; }
 .faq-item dt{ font-weight:700; margin-bottom:6px; display:flex; align-items:center; justify-content:space-between; gap:10px; }
 .faq-item dd{ margin:0; color:#cbd4da; max-height:0; overflow:hidden; transition:max-height 320ms ease, opacity 240ms ease; opacity:0; }
@@ -219,9 +253,17 @@ body::before{
 .ig-link{ color:var(--accent); }
 .site-footer{ margin-top:28px; padding-top:18px; border-top:1px solid var(--stroke); color:var(--muted); font-size:.95rem; }
 
-/* ---------- Grid helpers ---------- */
-.grid-3{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
-.grid-2{ display:grid; grid-template-columns:repeat(2,1fr); gap:16px; }
+/* ---------- Grid helpers (now auto-fit to avoid gaps) ---------- */
+.grid-3{
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap:16px;
+}
+.grid-2{
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap:16px;
+}
 @media (max-width:920px){ .grid-3{ grid-template-columns:1fr } }
 @media (max-width:860px){ .grid-2{ grid-template-columns:1fr } }
 
@@ -237,6 +279,20 @@ body::before{
   .faq-grid{ grid-template-columns:1fr; }
   body::before{ background-size:1400px auto; opacity:0.03; } /* reduce watermark on small screens */
   .hero-bg{ background-attachment: scroll; } /* disable fixed on small devices for perf */
+
+  /* mobile: make section panels full-bleed and centered */
+  .section .section-panel,
+  .section > .container,
+  .card,
+  .person-card,
+  .faq-item {
+    max-width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 16px;
+    padding-right: 16px;
+    border-radius: 10px;
+  }
 }
 
 /* ---------- Accessibility / reduced motion ---------- */
