@@ -55,7 +55,7 @@ body::before{
   background-position: center;
   background-repeat: no-repeat;
   background-size: 2200px auto; /* huge watermark — adjust if needed */
-  opacity: 0.035;
+  opacity: 0.05;
   filter: grayscale(70%) contrast(0.95);
 }
 
@@ -134,17 +134,17 @@ body::before{
   z-index:2;
 
   /* glass-like background that allows watermark to show beneath */
-  background: linear-gradient(180deg, rgba(8,8,10,0.55), rgba(8,8,10,0.6));
-  backdrop-filter: blur(6px) saturate(0.98);
+  .section{
+  background: linear-gradient(180deg, rgba(8,8,10,0.35), rgba(8,8,10,0.45));
+  backdrop-filter: blur(5px) saturate(0.95);
   -webkit-backdrop-filter: blur(6px) saturate(0.98);
-
   border-top: 1px solid rgba(255,255,255,0.02);
   color:var(--text);
 }
 
 /* slightly different tone for alternate sections */
 .section.alt{
-  background: linear-gradient(180deg, rgba(11,11,13,0.48), rgba(12,12,16,0.55));
+  background: linear-gradient(180deg, rgba(11,11,13,0.28), rgba(12,12,16,0.38));
 }
 
 /* small, more opaque content panels if you need absolute contrast */
