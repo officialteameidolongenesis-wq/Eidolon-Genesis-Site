@@ -299,3 +299,71 @@ body::before{
 @media (prefers-reduced-motion: reduce){
   .hero-bg, .hero:hover .hero-bg{ transition: none; transform: none; }
 }
+/* ---------- Fix centering globale per sezioni e pannelli ---------- */
+/* Forza ogni section ad allineare il suo contenuto al centro della viewport.
+   Questo evita che il contenuto sembri "spostato" rispetto al watermark. */
+
+.section{
+  display: flex;
+  justify-content: center;   /* centra orizzontalmente il contenuto */
+  align-items: flex-start;   /* mantiene i contenuti in alto */
+  padding-left: 0;           /* rimuove eventuali offset laterali */
+  padding-right: 0;
+}
+
+/* applica al container dentro le section: larghezza piena ma limitata e centrata */
+.section > .container {
+  width: 100%;
+  max-width: 1000px;         /* regola a piacere: 1000px è comodo per mobile/desktop */
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 20px;        /* mantiene padding interno */
+  padding-right: 20px;
+  box-sizing: border-box;
+}
+
+/* assicura che i pannelli glass (.card, .person-card ecc.) siano centrati e larghezza coerente */
+.section .card,
+.section .person-card,
+.section .content-panel,
+.section .faq-grid,
+.section .contact-grid {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+/* se usi .section-panel (wrapper consigliato), rendilo centrale e responsive */
+.section .section-panel{
+  width:100%;
+  max-width:960px;
+  margin:0 auto;
+  box-sizing:border-box;
+}
+
+/* In mobile manteniamo padding e rimozione offset */
+@media (max-width: 860px){
+  .section{
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  .section > .container {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+  .section .section-panel {
+    max-width: 100%;
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+}
+
+/* Fix per overflow or elemento che "sposta" la pagina a destra */
+html, body {
+  overflow-x: hidden; /* evita scroll orizzontale causato da elementi fuori bordo */
+}
+
+/* Qualche micro-rifinitura per il watermark: manteniamo il centro in corrispondenza della viewport */
+body::before {
+  background-position: center center; /* assicurati sia centrato sulla viewport */
+  background-size: cover;
+}
