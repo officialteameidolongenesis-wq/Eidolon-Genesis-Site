@@ -1,354 +1,261 @@
 <!doctype html>
-<html lang="it">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Eidolon Genesis — Manga one-shot</title>
-  <meta name="description" content="Eidolon Genesis — manga one-shot dark fantasy post-Cataclisma. Fratture animiche catalizzate (Eidolon), fazioni, personaggi e il mondo intorno agli Alberi di Nirn." />
 
-  <!-- Social / Open Graph -->
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content="Eidolon Genesis" />
-  <meta property="og:description" content="Un mondo spezzato. Un ragazzo segnato. Fratture dell'anima che plasmano la realtà." />
-  <meta property="og:image" content="public/Eidomalogo.png" />
-  <meta name="twitter:card" content="summary_large_image" />
+<html lang="it">  
+<head>  
+  <meta charset="utf-8" />  
+  <meta name="viewport" content="width=device-width,initial-scale=1" />  
+  <title>Eidolon Genesis — Manga one-shot</title>  
+  <meta name="description" content="Eidolon Genesis — manga one-shot dark fantasy post-Cataclisma. Fratture animiche catalizzate (Eidolon), fazioni, personaggi e il mondo intorno agli Alberi di Nirn." />    <!-- Social / Open Graph -->    <meta property="og:type" content="website" />  
+  <meta property="og:title" content="Eidolon Genesis" />  
+  <meta property="og:description" content="Un mondo spezzato. Un ragazzo segnato. Fratture dell'anima che plasmano la realtà." />  
+  <meta property="og:image" content="public/Eidomalogo.png" />  
+  <meta name="twitter:card" content="summary_large_image" />    <!-- Fonts -->    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Unica+One&display=swap" rel="stylesheet">    <!-- Main stylesheet -->    <link rel="stylesheet" href="style.css">    <!-- Fallback small inline style -->    <style>  
+    :root { --accent:#6ef7ff; --deep:#5a2249; --bg:#0e0e11; --muted:#9fb0be; --ice:#e2f1f7; }  
+    html,body{  
+      height:100%;  
+      margin:0;  
+      background: var(--bg) url("public/Eidolongenesislogo-v2.png") center center / cover no-repeat fixed;  
+      color:var(--ice);  
+      font-family:Orbitron, sans-serif;  
+    }  
+    a{color:var(--ice);text-decoration:none}  
+    .faq-item { cursor:pointer; margin-bottom:1rem; }  
+    .faq-item dt { font-weight:bold; }  
+    .faq-item dd { display:none; margin:0.5rem 0 0 0; }  
+    .faq-item.active dd { display:block; }  
+  </style>  </head>  
+<body>    <!-- NAVBAR -->    <header class="nav-wrap" role="banner">  
+    <nav class="navbar container" aria-label="Main navigation">  
+      <div class="brand">  
+        <img src="public/Eidomalogo.png" alt="EIDOMA Studio - logo" class="logo" />  
+        <span class="site-title">Eidolon Genesis</span>  
+      </div>  <button id="hamburger" class="hamburger" aria-expanded="false" aria-controls="navpanel" aria-label="Apri menu">  
+    <span></span><span></span><span></span>  
+  </button>  
 
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Unica+One&display=swap" rel="stylesheet">
+  <div id="navpanel" class="navpanel">  
+    <ul class="navlinks">  
+      <li><a href="#home">Home</a></li>  
+      <li><a href="#eidolon">Eidolon</a></li>  
+      <li><a href="#personaggi">Personaggi</a></li>  
+      <li><a href="#fazioni">Fazioni</a></li>  
+      <li><a href="#mondo">Mondo</a></li>  
+      <li><a href="#faq">FAQ</a></li>  
+      <li><a href="#contatti">Contatti</a></li>  
+    </ul>  
 
-  <!-- Main stylesheet -->
-  <link rel="stylesheet" href="style.css">
+    <div class="social-cta">  
+      <a class="ig-btn" href="https://www.instagram.com/eidolon_genesis_project__" target="_blank" rel="noopener">  
+        <svg class="ig-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5z" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>  
+        Seguici  
+      </a>  
+    </div>  
+  </div>  
+</nav>
 
-  <!-- Fallback small inline style -->
-  <style>
-    :root { --accent:#6ef7ff; --deep:#5a2249; --bg:#0e0e11; --muted:#9fb0be; --ice:#e2f1f7; }
-    html,body{
-      height:100%;
-      margin:0;
-      background: var(--bg) url("public/Eidolongenesislogo-v2.png") center center / cover no-repeat fixed;
-      color:var(--ice);
-      font-family:Orbitron, sans-serif;
-    }
-    a{color:var(--ice);text-decoration:none}
-    .faq-item { cursor:pointer; margin-bottom:1rem; }
-    .faq-item dt { font-weight:bold; }
-    .faq-item dd { display:none; margin:0.5rem 0 0 0; }
-    .faq-item.active dd { display:block; }
-  </style>
-</head>
-<body>
+  </header>    <!-- HERO -->    <main>  
+  <section id="home" class="hero" aria-labelledby="hero-title">  
+    <div class="hero-content container">  
+      <h1 id="hero-title" class="hero-title">  
+        Un mondo spezzato. <span class="accent">Un ragazzo segnato.</span>  
+      </h1>  
+      <p class="hero-sub">Una verità sepolta tra le <strong>Fratture dell’anima</strong>.</p>  
+      <p class="hero-lead">Manga one-shot dark fantasy post-Cataclisma che esplora traumi, sopravvivenza e le manifestazioni chiamate <em>Eidolon</em>.</p>  
+      <div class="hero-actions">  
+        <a href="#eidolon" class="btn primary">Scopri gli Eidolon</a>  
+        <a href="#personaggi" class="btn ghost">Personaggi</a>  
+      </div>  
+    </div>  
+  </section>  
+  </main>  
+ <!-- EIDOLON -->  
+    <section id="eidolon" class="section">  
+      <div class="container">  
+        <h2 class="section-title">Cosa sono gli <span class="accent">Eidolon</span>?</h2>  
+        <p class="lead">Gli <strong>Eidolon</strong> non sono poteri né entità indipendenti. Sono <strong>Fratture Animiche Catalizzate</strong>: manifestazioni interiori nate da traumi profondi, ricordi spezzati, colpe o desideri laceranti e amplificate dall’energia residua del Cataclisma (denominata <em>Nirn</em>).</p>  <div class="grid-3">  
+      <article class="card">  
+        <h3>Origine</h3>  
+        <p>Si manifestano dopo un’esposizione rilevante al Nirn o quando una psiche si frattura: la Frattura dell’Anima è la nascita più comune, ma non l’unica via.</p>  
+      </article>  
 
-  <!-- NAVBAR -->
-  <header class="nav-wrap" role="banner">
-    <nav class="navbar container" aria-label="Main navigation">
-      <div class="brand">
-        <img src="public/Eidomalogo.png" alt="EIDOMA Studio - logo" class="logo" />
-        <span class="site-title">Eidolon Genesis</span>
-      </div>
+      <article class="card">  
+        <h3>Aspetto</h3>  
+        <p>Gli Eidolon possono apparire come sensazioni, presenze, distorsioni ambientali o manifestazioni fisiche. Ogni Eidolon riflette la ferita che l’ha generato.</p>  
+      </article>  
 
-      <button id="hamburger" class="hamburger" aria-expanded="false" aria-controls="navpanel" aria-label="Apri menu">
-        <span></span><span></span><span></span>
-      </button>
+      <article class="card">  
+        <h3>Pericolo</h3>  
+        <p>Non sono doni gratuiti: influenzano la mente e l’ambiente, spesso a un prezzo personale e collettivo.</p>  
+      </article>  
+    </div>  
+  </div>  
+</section>
 
-      <div id="navpanel" class="navpanel">
-        <ul class="navlinks">
-          <li><a href="#home">Home</a></li>
-          <li><a href="#eidolon">Eidolon</a></li>
-          <li><a href="#personaggi">Personaggi</a></li>
-          <li><a href="#fazioni">Fazioni</a></li>
-          <li><a href="#mondo">Mondo</a></li>
-          <li><a href="#faq">FAQ</a></li>
-          <li><a href="#contatti">Contatti</a></li>
-        </ul>
+  <!-- PERSONAGGI -->    <section id="personaggi" class="section alt">  
+    <div class="container">  
+      <h2 class="section-title">Personaggi principali</h2>  <div class="grid-2">  
+    <div class="person-card">  
+      <h3>Kamiya Kazushiro <span class="age">11</span></h3>  
+      <p class="meta">Protagonista</p>  
+      <p class="desc">Silenzioso e iper-osservatore, segnato da un trauma che gli ha strappato l’infanzia — il padre in coma, la madre assente. Il suo Eidolon inizia a manifestarsi come un’eco interiore.</p>  
+    </div>  
 
-        <div class="social-cta">
-          <a class="ig-btn" href="https://www.instagram.com/eidolon_genesis_project__" target="_blank" rel="noopener">
-            <svg class="ig-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5z" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            Seguici
-          </a>
-        </div>
-      </div>
-    </nav>
-  </header>
+    <div class="person-card">  
+      <h3>Ema Kazushiro <span class="age">15</span></h3>  
+      <p class="meta">Sorella maggiore</p>  
+      <p class="desc">Protettiva, dolce ma logorata. Ha preso sulle spalle la famiglia dopo l'incendio; porta sempre con sé il ciondolo di sua madre Mika.</p>  
+    </div>  
 
-  <!-- HERO -->
-  <main>
-  <section id="home" class="hero" aria-labelledby="hero-title">
-   <!-- Sfondo decorativo -->
-    <div class="hero-bg" aria-hidden="true"></div>
-    <!-- Contenuto dell' Hero -->
-    <div class="hero-content container">
-      <h1 id="hero-title" class="hero-title">
-        Un mondo spezzato. <span class="accent">Un ragazzo segnato.</span>
-      </h1>
-      <p class="hero-sub">Una verità sepolta tra le <strong>Fratture dell’anima</strong>.</p>
-      <p class="hero-lead">Manga one-shot dark fantasy post-Cataclisma che esplora traumi, sopravvivenza e le manifestazioni chiamate <em>Eidolon</em>.</p>
-      <div class="hero-actions">
-        <a href="#eidolon" class="btn primary">Scopri gli Eidolon</a>
-        <a href="#personaggi" class="btn ghost">Personaggi</a>
-      </div>
-    </div>
-  </section>
-  </main>
- <!-- EIDOLON -->
-    <section id="eidolon" class="section">
-      <div class="container">
-        <h2 class="section-title">Cosa sono gli <span class="accent">Eidolon</span>?</h2>
-        <p class="lead">Gli <strong>Eidolon</strong> non sono poteri né entità indipendenti. Sono <strong>Fratture Animiche Catalizzate</strong>: manifestazioni interiori nate da traumi profondi, ricordi spezzati, colpe o desideri laceranti e amplificate dall’energia residua del Cataclisma (denominata <em>Nirn</em>).</p>
+    <div class="person-card">  
+      <h3>Vista Kazushiro</h3>  
+      <p class="meta">Padre (in coma)</p>  
+      <p class="desc">Ex tecnico militare dell'ARCA e studioso degli Eidolon: l’incendio "accidentale" che  ha portato Vista in coma, anche da incosciente, lui sta continuando a contribuire la progressione della storia guidando le mosse future della sua famiglia.</p>  
+    </div>  
 
-        <div class="grid-3">
-          <article class="card">
-            <h3>Origine</h3>
-            <p>Si manifestano dopo un’esposizione rilevante al Nirn o quando una psiche si frattura: la Frattura dell’Anima è la nascita più comune, ma non l’unica via.</p>
-          </article>
+    <div class="person-card">  
+      <h3>Mika Hoshizora (Kazushiro)</h3>  
+      <p class="meta">Madre scomparsa</p>  
+      <p class="desc">Figura centrale nella memoria dei figli: gentilezza, empatia e una misteriosa connessione con gli Alberi di Nirn.</p>  
+    </div>  
+  </div>  
+</div>
 
-          <article class="card">
-            <h3>Aspetto</h3>
-            <p>Gli Eidolon possono apparire come sensazioni, presenze, distorsioni ambientali o manifestazioni fisiche. Ogni Eidolon riflette la ferita che l’ha generato.</p>
-          </article>
+  </section>  
+ <!-- FAZIONI -->  
+    <section id="fazioni" class="section">  
+      <div class="container">  
+        <h2 class="section-title">Le 6 fazioni</h2>  
+        <p class="lead">Forze in lotta per il controllo del Nirn, della verità e delle fratture dell’anima.</p>  <div class="grid-3">  
+      <div class="faction card">  
+        <h3>Arca Imperiale</h3>  
+        <p class="motto">“Sopravvivere è l’unico diritto.”</p>  
+        <p>Una tecnocrazia che custodisce archivi e risorse. Controllo, propaganda e progetti di ingegneria sociale: esperimenti e containment sugli Eidolon sono la loro arma politica.</p>  
+      </div>  
 
-          <article class="card">
-            <h3>Pericolo</h3>
-            <p>Non sono doni gratuiti: influenzano la mente e l’ambiente, spesso a un prezzo personale e collettivo.</p>
-          </article>
-        </div>
-      </div>
-    </section>
+      <div class="faction card">  
+        <h3>Culto di Eidra</h3>  
+        <p class="motto">“Nel dolore, la verità.”</p>  
+        <p>Setta mistica che interpreta le Fratture come rivelazioni spirituali. Fanatici e devoti cercano ascensione attraverso il trauma.</p>  
+      </div>  
+
+      <div class="faction card">  
+        <h3>I Frattali</h3>  
+        <p class="motto">“Rompi lo specchio, vedi l’origine.”</p>  
+        <p>Sottobosco di sabotatori e “visionari”: usano glitch e interferenze (analogici e digitali) per manipolare gli Eidolon e la percezione del mondo.</p>  
+      </div>  
+
+      <div class="faction card">  
+        <h3>Noyn</h3>  
+        <p class="motto">“Ogni cosa ha un prezzo. Anche l’anima.”</p>  
+        <p>Mercenari e ex-scienziati che trafficano conoscenza, risorse e persone. Pragmatici, letali e pronti a vendere la verità al miglior offerente.</p>  
+      </div>  
+
+      <div class="faction card">  
+        <h3>Laboratori Nazionali per il Progresso (LNP)</h3>  
+        <p class="motto">“Per il bene comune, oltre il consenso.”</p>  
+        <p>Organizzazione scientifica statale: ricerca, esperimenti e progetti segreti col pretesto del progresso. Dietro la retorica pubblica si celano prigioni-laboratorio e pratiche eticamente discutibili.</p>  
+      </div>  
+
+      <div class="faction card">  
+        <h3>I Crepitanti</h3>  
+        <p class="motto">“Non siamo ciò che resta. Siamo ciò che viene.”</p>  
+        <p>Corpi corrotti e ibridi, prodotto di sovraesposizione al Nirn: una minaccia tanto biologica quanto simbolica per la fragile umanità rimasta.</p>  
+      </div>  
+    </div>  
+  </div>  
+</section>
+
+  <!-- MONDO -->    <section id="mondo" class="section alt">  
+    <div class="container">  
+      <h2 class="section-title">Il mondo e il Worldbuilding</h2>  
+      <p class="lead">Zone Abitate Protette (ZAP), Corridoi di Transito, Zone Incerte e gli Alberi di Nirn.</p>  <div class="grid-2">  
+    <div class="card">  
+      <h3>Zone Abitate Protette</h3>  
+      <p>Città fortificate costruite sulle rovine, dove la sopravvivenza dipende da riciclo, nodi energetici e agricoltura verticale.</p>  
+    </div>  
+
+    <div class="card">  
+      <h3>Corridoi di Transito</h3>  
+      <p>Lunghi canali fortificati che collegano le ZAP. Alcuni stabili, altri pericolosamente instabili: attraversarli significa rischiare incontri con fratture e manifestazione anomala di Eidolon.</p>  
+    </div>  
+
+    <div class="card">  
+      <h3>Zone Incerte</h3>  
+      <p>Regioni instabili fuori dal controllo umano, dove il Nirn deforma la realtà. Rovine, illusioni e mostruosità sono all’ordine del giorno.</p>  
+    </div>  
+
+    <div class="card">  
+      <h3>Alberi di Nirn</h3>  
+      <p>Colossali “sentinelle vegetali” che formano barriere naturali attorno alle ZAP: la loro linfa e le radici hanno proprietà stabilizzanti per il Nirn.</p>  
+    </div>  
+  </div>  
+</div>
+
+  </section>    <!-- FAQ -->    <section id="faq" class="section">  
+    <div class="container">  
+      <h2 class="section-title">Domande Frequenti</h2>  
+      <dl class="faq-grid">  
+        <div class="faq-item">  
+          <dt>Cos'è un Eidolon?</dt>  
+          <dd>Una Frattura Animica Catalizzata: non un potere semplice, ma la materializzazione di una ferita dell'anima amplificata dal Nirn.</dd>  
+        </div>  
+        <div class="faq-item">  
+          <dt>Il mondo va sul fantascientifico?</dt>  
+          <dd>La tecnologia esiste ma è stata riorientata: non è space opera, è un'ibridazione di scienza, riciclo e tradizione post-Cataclisma.</dd>  
+        </div>  
+        <div class="faq-item">  
+          <dt>Come posso supportare il progetto?</dt>  
+          <dd>Seguici su Instagram, lascia feedback e condividi i concept art. Per collaborazioni: <a href="mailto:official.team.eidolon.genesis@gmail.com">official.team.eidolon.genesis@gmail.com</a>.</dd>  
+        </div>  
+      </dl>  
+    </div>  
+  </section>    <!-- CONTATTI -->    <section id="contatti" class="section contact">  
+    <div class="container">  
+      <h2 class="section-title">Contatti</h2>  
+      <p class="lead">Per collaborazioni e aggiornamenti</p>  
+      <div class="contact-grid">  
+        <div class="card">  
+          <h3>Email ufficiale</h3>  
+          <p><a href="mailto:official.team.eidolon.genesis@gmail.com">official.team.eidolon.genesis@gmail.com</a></p>  
+        </div>  
+        <div class="card">  
+          <h3>Instagram</h3>  
+          <p><a class="ig-link" href="https://www.instagram.com/eidolon_genesis_project__" target="_blank" rel="noopener">@eidolon_genesis_project__</a></p>  
+        </div>  
+      </div>  
+      <footer class="site-footer">  
+        <p>© 2025 EIDOMA – The Creators. Tutti i diritti riservati.</p>  
+      </footer>  
+    </div>  
+  </section>    <!-- JS: menu + smooth scroll + faq toggle -->    <script>  
+    (function(){  
+      const btn = document.getElementById('hamburger');  
+      const panel = document.getElementById('navpanel');  
+      btn.addEventListener('click', () => {  
+        const expanded = btn.getAttribute('aria-expanded') === 'true';  
+        btn.setAttribute('aria-expanded', String(!expanded));  
+        panel.classList.toggle('open');  
+      });  
   
-  <!-- PERSONAGGI -->
-  <section id="personaggi" class="section alt">
-    <div class="container">
-      <h2 class="section-title">Personaggi principali</h2>
-
-      <div class="grid-2">
-        <div class="person-card">
-          <h3>Kamiya Kazushiro <span class="age">11</span></h3>
-          <p class="meta">Protagonista</p>
-          <p class="desc">Silenzioso e iper-osservatore, segnato da un trauma che gli ha strappato l’infanzia — il padre in coma, la madre assente. Il suo Eidolon inizia a manifestarsi come un’eco interiore.</p>
-        </div>
-
-        <div class="person-card">
-          <h3>Ema Kazushiro <span class="age">15</span></h3>
-          <p class="meta">Sorella maggiore</p>
-          <p class="desc">Protettiva, dolce ma logorata. Ha preso sulle spalle la famiglia dopo l'incendio; porta sempre con sé il ciondolo di sua madre Mika.</p>
-        </div>
-
-        <div class="person-card">
-          <h3>Vista Kazushiro</h3>
-          <p class="meta">Padre (in coma)</p>
-          <p class="desc">Ex tecnico militare dell'ARCA e studioso degli Eidolon: l’incendio "accidentale" che  ha portato Vista in coma, anche da incosciente, lui sta continuando a contribuire la progressione della storia guidando le mosse future della sua famiglia.</p>
-        </div>
-
-        <div class="person-card">
-          <h3>Mika Hoshizora (Kazushiro)</h3>
-          <p class="meta">Madre scomparsa</p>
-          <p class="desc">Figura centrale nella memoria dei figli: gentilezza, empatia e una misteriosa connessione con gli Alberi di Nirn.</p>
-        </div>
-      </div>
-    </div>
-  </section>
- <!-- FAZIONI -->
-    <section id="fazioni" class="section">
-      <div class="container">
-        <h2 class="section-title">Le 6 fazioni</h2>
-        <p class="lead">Forze in lotta per il controllo del Nirn, della verità e delle fratture dell’anima.</p>
-
-        <div class="grid-3">
-          <div class="faction card">
-            <h3>Arca Imperiale</h3>
-            <p class="motto">“Sopravvivere è l’unico diritto.”</p>
-            <p>Una tecnocrazia che custodisce archivi e risorse. Controllo, propaganda e progetti di ingegneria sociale: esperimenti e containment sugli Eidolon sono la loro arma politica.</p>
-          </div>
-
-          <div class="faction card">
-            <h3>Culto di Eidra</h3>
-            <p class="motto">“Nel dolore, la verità.”</p>
-            <p>Setta mistica che interpreta le Fratture come rivelazioni spirituali. Fanatici e devoti cercano ascensione attraverso il trauma.</p>
-          </div>
-
-          <div class="faction card">
-            <h3>I Frattali</h3>
-            <p class="motto">“Rompi lo specchio, vedi l’origine.”</p>
-            <p>Sottobosco di sabotatori e “visionari”: usano glitch e interferenze (analogici e digitali) per manipolare gli Eidolon e la percezione del mondo.</p>
-          </div>
-
-          <div class="faction card">
-            <h3>Noyn</h3>
-            <p class="motto">“Ogni cosa ha un prezzo. Anche l’anima.”</p>
-            <p>Mercenari e ex-scienziati che trafficano conoscenza, risorse e persone. Pragmatici, letali e pronti a vendere la verità al miglior offerente.</p>
-          </div>
-
-          <div class="faction card">
-            <h3>Laboratori Nazionali per il Progresso (LNP)</h3>
-            <p class="motto">“Per il bene comune, oltre il consenso.”</p>
-            <p>Organizzazione scientifica statale: ricerca, esperimenti e progetti segreti col pretesto del progresso. Dietro la retorica pubblica si celano prigioni-laboratorio e pratiche eticamente discutibili.</p>
-          </div>
-
-          <div class="faction card">
-            <h3>I Crepitanti</h3>
-            <p class="motto">“Non siamo ciò che resta. Siamo ciò che viene.”</p>
-            <p>Corpi corrotti e ibridi, prodotto di sovraesposizione al Nirn: una minaccia tanto biologica quanto simbolica per la fragile umanità rimasta.</p>
-          </div>
-        </div>
-      </div>
-    </section>
+      // Smooth scroll  
+      document.querySelectorAll('a[href^="#"]').forEach(a=>{  
+        a.addEventListener('click', e=>{  
+          const target = document.querySelector(a.getAttribute('href'));  
+          if(target){ e.preventDefault(); target.scrollIntoView({behavior:'smooth'});  
+            if(panel.classList.contains('open')){ panel.classList.remove('open'); btn.setAttribute('aria-expanded','false'); }  
+          }  
+        });  
+      });  
   
-  <!-- MONDO -->
-  <section id="mondo" class="section alt">
-    <div class="container">
-      <h2 class="section-title">Il mondo e il Worldbuilding</h2>
-      <p class="lead">Zone Abitate Protette (ZAP), Corridoi di Transito, Zone Incerte e gli Alberi di Nirn.</p>
-
-      <div class="grid-2">
-        <div class="card">
-          <h3>Zone Abitate Protette</h3>
-          <p>Città fortificate costruite sulle rovine, dove la sopravvivenza dipende da riciclo, nodi energetici e agricoltura verticale.</p>
-        </div>
-
-        <div class="card">
-          <h3>Corridoi di Transito</h3>
-          <p>Lunghi canali fortificati che collegano le ZAP. Alcuni stabili, altri pericolosamente instabili: attraversarli significa rischiare incontri con fratture e manifestazione anomala di Eidolon.</p>
-        </div>
-
-        <div class="card">
-          <h3>Zone Incerte</h3>
-          <p>Regioni instabili fuori dal controllo umano, dove il Nirn deforma la realtà. Rovine, illusioni e mostruosità sono all’ordine del giorno.</p>
-        </div>
-
-        <div class="card">
-          <h3>Alberi di Nirn</h3>
-          <p>Colossali “sentinelle vegetali” che formano barriere naturali attorno alle ZAP: la loro linfa e le radici hanno proprietà stabilizzanti per il Nirn.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FAQ -->
-  <section id="faq" class="section">
-    <div class="container">
-      <h2 class="section-title">Domande Frequenti</h2>
-      <dl class="faq-grid">
-        <div class="faq-item">
-          <dt>Cos'è un Eidolon?</dt>
-          <dd>Una Frattura Animica Catalizzata: non un potere semplice, ma la materializzazione di una ferita dell'anima amplificata dal Nirn.</dd>
-        </div>
-        <div class="faq-item">
-          <dt>Il mondo va sul fantascientifico?</dt>
-          <dd>La tecnologia esiste ma è stata riorientata: non è space opera, è un'ibridazione di scienza, riciclo e tradizione post-Cataclisma.</dd>
-        </div>
-        <div class="faq-item">
-          <dt>Come posso supportare il progetto?</dt>
-          <dd>Seguici su Instagram, lascia feedback e condividi i concept art. Per collaborazioni: <a href="mailto:official.team.eidolon.genesis@gmail.com">official.team.eidolon.genesis@gmail.com</a>.</dd>
-        </div>
-      </dl>
-    </div>
-  </section>
-
-  <!-- CONTATTI -->
-  <section id="contatti" class="section contact">
-    <div class="container">
-      <h2 class="section-title">Contatti</h2>
-      <p class="lead">Per collaborazioni e aggiornamenti</p>
-      <div class="contact-grid">
-        <div class="card">
-          <h3>Email ufficiale</h3>
-          <p><a href="mailto:official.team.eidolon.genesis@gmail.com">official.team.eidolon.genesis@gmail.com</a></p>
-        </div>
-        <div class="card">
-          <h3>Instagram</h3>
-          <p><a class="ig-link" href="https://www.instagram.com/eidolon_genesis_project__" target="_blank" rel="noopener">@eidolon_genesis_project__</a></p>
-        </div>
-      </div>
-      <footer class="site-footer">
-        <p>© 2025 EIDOMA – The Creators. Tutti i diritti riservati.</p>
-      </footer>
-    </div>
-  </section>
-
-  <!-- JS: menu + smooth scroll + faq toggle -->
-  <script>
-    (function(){
-      const btn = document.getElementById('hamburger');
-      const panel = document.getElementById('navpanel');
-      btn.addEventListener('click', () => {
-        const expanded = btn.getAttribute('aria-expanded') === 'true';
-        btn.setAttribute('aria-expanded', String(!expanded));
-        panel.classList.toggle('open');
-      });
-<script>
-(function(){
-  const btn = document.getElementById('hamburger');
-  const panel = document.getElementById('navpanel');
-  btn?.addEventListener('click', () => {
-    const expanded = btn.getAttribute('aria-expanded') === 'true';
-    btn.setAttribute('aria-expanded', String(!expanded));
-    panel.classList.toggle('open');
-  });
-
-  // Smooth scroll with navbar offset + close mobile menu
-  document.addEventListener('click', function(e){
-    const a = e.target.closest('a[href^="#"]');
-    if(!a) return;
-    const href = a.getAttribute('href');
-    if(!href || href === '#') return;
-
-    const target = document.querySelector(href);
-    if(!target) return;
-
-    e.preventDefault();
-
-    // header height (sticky navbar) + small extra offset
-    const header = document.querySelector('.nav-wrap');
-    const offset = (header?.offsetHeight || 64) + 12;
-
-    const top = target.getBoundingClientRect().top + window.scrollY - offset;
-
-    window.scrollTo({ top: Math.max(0, Math.floor(top)), behavior: 'smooth' });
-
-    // give focus for accessibility once scrolled
-    target.setAttribute('tabindex','-1');
-    target.focus({preventScroll:true});
-    // remove tabindex later
-    window.setTimeout(()=> target.removeAttribute('tabindex'), 1200);
-
-    // close mobile menu if open
-    if(panel.classList.contains('open')){
-      panel.classList.remove('open');
-      btn.setAttribute('aria-expanded','false');
-    }
-  });
-
-  // FAQ toggle (solo uno aperto)
-  const faqItems = document.querySelectorAll('.faq-item');
-  faqItems.forEach(item=>{
-    const dt = item.querySelector('dt');
-    if(!dt) return;
-    dt.addEventListener('click',()=>{
-      faqItems.forEach(i=>i.classList.remove('active'));
-      item.classList.add('active');
-    });
-  });
-})();
-
-      // Smooth scroll
-      document.querySelectorAll('a[href^="#"]').forEach(a=>{
-        a.addEventListener('click', e=>{
-          const target = document.querySelector(a.getAttribute('href'));
-          if(target){ e.preventDefault(); target.scrollIntoView({behavior:'smooth'});
-            if(panel.classList.contains('open')){ panel.classList.remove('open'); btn.setAttribute('aria-expanded','false'); }
-          }
-        });
-      });
-
-      // FAQ toggle (solo uno aperto)
-      const faqItems = document.querySelectorAll('.faq-item');
-      faqItems.forEach(item=>{
-        item.querySelector('dt').addEventListener('click',()=>{
-          faqItems.forEach(i=>i.classList.remove('active'));
-          item.classList.add('active');
-        });
-      });
-    })();
-  </script>
-</body>
-</html>
+      // FAQ toggle (solo uno aperto)  
+      const faqItems = document.querySelectorAll('.faq-item');  
+      faqItems.forEach(item=>{  
+        item.querySelector('dt').addEventListener('click',()=>{  
+          faqItems.forEach(i=>i.classList.remove('active'));  
+          item.classList.add('active');  
+        });  
+      });  
+    })();  
+ </script>  
+ </body>  
+ </html>
