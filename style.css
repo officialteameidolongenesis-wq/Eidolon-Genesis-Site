@@ -2,7 +2,7 @@
    style.css - Eidolon Genesis (aggiornato)
    Put images in /public:
      - /Eidolongenesislogo-v2.png   <= grande logo per hero / watermark
-     - /Eidomalogo.png             <= piccolo logo per navbar
+     - /public/Eidomalogo.png       <= piccolo logo per navbar
    ========================= */
 
 /* ---------- Reset minimo ---------- */
@@ -42,18 +42,19 @@ html,body{
   -moz-osx-font-smoothing:grayscale;
 }
 
-/* subtle global watermark behind content (low opacity).
-   If you prefer the logo only in hero, comment this block out. */
+/* ---------- Global watermark behind content ----------
+   This is the big faint logo that should be visible while scrolling.
+   If you want it only in the hero, comment out this block. */
 body::before{
   content:"";
   position:fixed;
   inset:0;
   z-index:0;
   pointer-events:none;
-  background-image: url('/Eidolongenesislogo-v2.png');
+  background-image: url('/Eidolongenesislogo-v2.png'); /* put file in /public */
   background-position: center;
   background-repeat: no-repeat;
-  background-size: 2200px auto; /* very large watermark */
+  background-size: 2200px auto; /* huge watermark — adjust if needed */
   opacity: 0.035;
   filter: grayscale(70%) contrast(0.95);
 }
@@ -85,7 +86,7 @@ body::before{
 
 /* ---------- Hero ---------- */
 /* hero-bg is the element responsible for the full cover image for the hero section.
-   It will sit behind hero content but above the global watermark. */
+   It will sit above the global watermark but behind hero-content. */
 .hero{ position:relative; min-height:82vh; display:grid; place-items:center; overflow:hidden; border-bottom:1px solid var(--stroke); }
 .hero-bg{
   position:absolute; inset:0; z-index:1;
@@ -98,6 +99,8 @@ body::before{
   transition: transform 30s linear;
   pointer-events:none;
   opacity:0.95;
+  /* fixed attachment only on desktop for that parallax-like watermark feel */
+  background-attachment: fixed;
 }
 .hero-bg::after{
   content:"";
@@ -122,9 +125,38 @@ body::before{
 /* small helper */
 .visually-hidden{ position:absolute!important; height:1px; width:1px; overflow:hidden; clip:rect(1px,1px,1px,1px); white-space:nowrap; }
 
-/* ---------- Sections ---------- */
-.section{ padding:72px 0; background:var(--bg); position:relative; z-index:2; }
-.section.alt{ background:var(--bg-2); }
+/* ---------- Sections: glass panels so watermark shows ---------- */
+/* Instead of solid black, use semi-transparent layered backgrounds + blur.
+   This keeps text legibile and lets the big logo faintly show behind. */
+.section{
+  padding:72px 0;
+  position:relative;
+  z-index:2;
+
+  /* glass-like background that allows watermark to show beneath */
+  background: linear-gradient(180deg, rgba(8,8,10,0.55), rgba(8,8,10,0.6));
+  backdrop-filter: blur(6px) saturate(0.98);
+  -webkit-backdrop-filter: blur(6px) saturate(0.98);
+
+  border-top: 1px solid rgba(255,255,255,0.02);
+  color:var(--text);
+}
+
+/* slightly different tone for alternate sections */
+.section.alt{
+  background: linear-gradient(180deg, rgba(11,11,13,0.48), rgba(12,12,16,0.55));
+}
+
+/* small, more opaque content panels if you need absolute contrast */
+.content-panel{
+  background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+  border:1px solid var(--stroke);
+  border-radius:12px;
+  padding:18px;
+  box-shadow:var(--shadow);
+}
+
+/* Titles & text */
 .section-title{ font-family:"Orbitron", sans-serif; font-size:clamp(22px, 3.2vw, 32px); margin:0 0 18px; color:var(--text); }
 .lead{ color:#c7d0d8; margin:0 0 22px; }
 
@@ -144,13 +176,13 @@ body::before{
 
 /* ---------- FAQ (interattiva) ---------- */
 .faq-grid{ display:grid; grid-template-columns: repeat(3, 1fr); gap:16px; }
-.faq-item{ background:var(--card); border:1px solid var(--stroke); padding:16px; border-radius:12px; transition:var(--transition); cursor:pointer; }
+.faq-item{ background:var(--card); border:1px solid var(--stroke); padding:16px; border-radius:12px; transition:var(--transition); cursor:pointer; position:relative; }
 .faq-item dt{ font-weight:700; margin-bottom:6px; display:flex; align-items:center; justify-content:space-between; gap:10px; }
 .faq-item dd{ margin:0; color:#cbd4da; max-height:0; overflow:hidden; transition:max-height 320ms ease, opacity 240ms ease; opacity:0; }
 .faq-item.active{ box-shadow: 0 14px 40px rgba(0,0,0,.45); transform:translateY(-6px); }
 .faq-item.active dd{ max-height:400px; opacity:1; margin-top:8px; }
 
-/* small caret for dt */
+/* caret */
 .faq-item dt .caret{ display:inline-block; width:14px; height:14px; transform-origin:center; transition:transform 260ms ease; opacity:.85; }
 .faq-item.active dt .caret{ transform:rotate(180deg); }
 
@@ -177,6 +209,10 @@ body::before{
   .hero-actions{ flex-direction:column; gap:12px; }
   .faq-grid{ grid-template-columns:1fr; }
   body::before{ background-size:1400px auto; opacity:0.03; } /* reduce watermark on small screens */
+  .hero-bg{ background-attachment: scroll; } /* disable fixed on small devices for perf */
 }
 
-/* fine file */
+/* ---------- Accessibility / reduced motion ---------- */
+@media (prefers-reduced-motion: reduce){
+  .hero-bg, .hero:hover .hero-bg{ transition: none; transform: none; }
+}
