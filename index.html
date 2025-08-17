@@ -74,6 +74,9 @@
   <!-- HERO -->
   <main>
   <section id="home" class="hero" aria-labelledby="hero-title">
+   <!-- Sfondo decorativo -->
+    <div class="hero-bg" aria-hidden="true"></div>
+    <!-- Contenuto dell' Hero -->
     <div class="hero-content container">
       <h1 id="hero-title" class="hero-title">
         Un mondo spezzato. <span class="accent">Un ragazzo segnato.</span>
@@ -272,6 +275,60 @@
         btn.setAttribute('aria-expanded', String(!expanded));
         panel.classList.toggle('open');
       });
+<script>
+(function(){
+  const btn = document.getElementById('hamburger');
+  const panel = document.getElementById('navpanel');
+  btn?.addEventListener('click', () => {
+    const expanded = btn.getAttribute('aria-expanded') === 'true';
+    btn.setAttribute('aria-expanded', String(!expanded));
+    panel.classList.toggle('open');
+  });
+
+  // Smooth scroll with navbar offset + close mobile menu
+  document.addEventListener('click', function(e){
+    const a = e.target.closest('a[href^="#"]');
+    if(!a) return;
+    const href = a.getAttribute('href');
+    if(!href || href === '#') return;
+
+    const target = document.querySelector(href);
+    if(!target) return;
+
+    e.preventDefault();
+
+    // header height (sticky navbar) + small extra offset
+    const header = document.querySelector('.nav-wrap');
+    const offset = (header?.offsetHeight || 64) + 12;
+
+    const top = target.getBoundingClientRect().top + window.scrollY - offset;
+
+    window.scrollTo({ top: Math.max(0, Math.floor(top)), behavior: 'smooth' });
+
+    // give focus for accessibility once scrolled
+    target.setAttribute('tabindex','-1');
+    target.focus({preventScroll:true});
+    // remove tabindex later
+    window.setTimeout(()=> target.removeAttribute('tabindex'), 1200);
+
+    // close mobile menu if open
+    if(panel.classList.contains('open')){
+      panel.classList.remove('open');
+      btn.setAttribute('aria-expanded','false');
+    }
+  });
+
+  // FAQ toggle (solo uno aperto)
+  const faqItems = document.querySelectorAll('.faq-item');
+  faqItems.forEach(item=>{
+    const dt = item.querySelector('dt');
+    if(!dt) return;
+    dt.addEventListener('click',()=>{
+      faqItems.forEach(i=>i.classList.remove('active'));
+      item.classList.add('active');
+    });
+  });
+})();
 
       // Smooth scroll
       document.querySelectorAll('a[href^="#"]').forEach(a=>{
