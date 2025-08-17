@@ -1,5 +1,5 @@
 /* =========================
-   style.css - Eidolon Genesis (unito + section-panel)
+   style.css - Eidolon Genesis (unito + section-panel) - PATCHED
    Put images in /public:
      - /Eidolongenesislogo-v2.png
      - /Eidomalogo.png
@@ -40,19 +40,26 @@ html,body{
   line-height:1.6;
   -webkit-font-smoothing:antialiased;
   -moz-osx-font-smoothing:grayscale;
+
+  /* evita lo "spiraglio" orizzontale e ancore stick */
+  overflow-x:hidden;
+  scroll-padding-top:80px; /* utile per anchors + navbar */
 }
 
 /* ---------- Global watermark behind content ----------
-   This is the big faint logo that should be visible while scrolling.
-   If you want it only in the hero, comment out this block. */
+   Big faint logo; centrato via transform per non sembrare spostato. */
 body::before{
   content:"";
   position:fixed;
-  inset:0;
+  left:50%;
+  top:0;
+  transform:translateX(-50%);
   z-index:0;
   pointer-events:none;
+  width:2200px;
+  height:100%;
   background-image: url('/Eidolongenesislogo-v2.png'); /* put file in /public */
-  background-position: center;
+  background-position: center center;
   background-repeat: no-repeat;
   background-size: 2200px auto; /* huge watermark — adjust if needed */
   opacity: 0.05;
@@ -164,6 +171,7 @@ body::before{
 .visually-hidden{ position:absolute!important; height:1px; width:1px; overflow:hidden; clip:rect(1px,1px,1px,1px); white-space:nowrap; }
 
 /* Glass blur più evidente: sezioni traslucide che lasciano intravedere il watermark */
+/* + CENTRATURA: ogni section centra il suo contenuto */
 .section{
   padding:72px 0;
   position:relative;
@@ -176,6 +184,13 @@ body::before{
 
   border-top: 1px solid rgba(255,255,255,0.02);
   color:var(--text);
+
+  /* centrare */
+  display:flex;
+  justify-content:center;
+  align-items:flex-start;
+  padding-left:20px;
+  padding-right:20px;
 }
 
 /* PANEL: centrare il contenuto con effetto glassic */
@@ -195,14 +210,16 @@ body::before{
 
 /* fallback automatico (se non vuoi toccare HTML) applica la behavior anche alla .container dentro <section> */
 .section > .container {
+  width:100%;
   max-width:1000px;
   margin-left:auto;
   margin-right:auto;
   padding-top:10px;
   padding-bottom:10px;
+  box-sizing:border-box;
 }
 
-/* se vuoi sezioni con contrasto massimo (uso interno) */
+/* Se vuoi sezioni con contrasto massimo (uso interno) */
 .content-panel{
   background: linear-gradient(180deg, rgba(0,0,0,0.55), rgba(0,0,0,0.62));
   border:1px solid rgba(255,255,255,0.04);
@@ -211,20 +228,40 @@ body::before{
   box-shadow:var(--shadow);
 }
 
-/* Titles & text */
-.section-title{ font-family:"Orbitron", sans-serif; font-size:clamp(22px, 3.2vw, 32px); margin:0 0 18px; color:var(--text); }
-.lead{ color:#c7d0d8; margin:0 0 22px; }
+/* Titles & text - titoli centrati ma testo delle card left per leggibilità */
+.section-title{ font-family:"Orbitron", sans-serif; font-size:clamp(22px, 3.2vw, 32px); margin:0 0 18px; color:var(--text); text-align:center; }
+.lead{ color:#c7d0d8; margin:0 0 22px; text-align:center; }
 
 /* Cards - default look */
-.card{ background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01)); border:1px solid var(--stroke); border-left:3px solid rgba(159,214,228,.35); border-radius:14px; padding:18px 16px; box-shadow:var(--shadow); }
+.card{
+  background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01));
+  border:1px solid var(--stroke);
+  border-left:3px solid rgba(159,214,228,.35);
+  border-radius:14px;
+  padding:18px 16px;
+  box-shadow:var(--shadow);
+
+  /* centra ogni card visivamente quando non in griglia larga */
+  margin-left:auto;
+  margin-right:auto;
+  box-sizing:border-box;
+}
 .card h3{ margin:0 0 8px; font-weight:700; }
-.card p{ margin:0; color:#cbd4da; }
+.card p{ margin:0; color:#cbd4da; text-align:left; }
 
 /* Personaggi */
-.person-card{ background:var(--card); border:1px solid var(--stroke); border-radius:14px; padding:18px; }
+.person-card{
+  background:var(--card);
+  border:1px solid var(--stroke);
+  border-radius:14px;
+  padding:18px;
+  margin-left:auto;
+  margin-right:auto;
+  box-sizing:border-box;
+}
 .person-card .meta{ color:var(--muted); font-size:.95rem; margin:.25rem 0 .35rem; }
 .person-card .age{ font-size:.85rem; color:var(--text); background:rgba(159,214,228,.08); border:1px solid rgba(159,214,228,.25); padding:.15rem .45rem; border-radius:8px; margin-left:.35rem; }
-.person-card .desc{ color:#d6dde3; }
+.person-card .desc{ color:#d6dde3; text-align:left; }
 
 /* Fazioni */
 .faction .motto{ color:var(--accent); font-weight:600; margin:.15rem 0 .5rem; }
@@ -236,10 +273,24 @@ body::before{
   display:grid;
   gap:16px;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  margin-left:auto;
+  margin-right:auto;
 }
-.faq-item{ background:var(--card); border:1px solid var(--stroke); padding:16px; border-radius:12px; transition:var(--transition); cursor:pointer; position:relative; }
+.faq-item{
+  background:var(--card);
+  border:1px solid var(--stroke);
+  padding:16px;
+  border-radius:12px;
+  transition:var(--transition);
+  cursor:pointer;
+  position:relative;
+
+  box-sizing:border-box;
+  margin-left:auto;
+  margin-right:auto;
+}
 .faq-item dt{ font-weight:700; margin-bottom:6px; display:flex; align-items:center; justify-content:space-between; gap:10px; }
-.faq-item dd{ margin:0; color:#cbd4da; max-height:0; overflow:hidden; transition:max-height 320ms ease, opacity 240ms ease; opacity:0; }
+.faq-item dd{ margin:0; color:#cbd4da; max-height:0; overflow:hidden; transition:max-height 320ms ease, opacity 240ms ease; opacity:0; text-align:left; }
 .faq-item.active{ box-shadow: 0 14px 40px rgba(0,0,0,.45); transform:translateY(-6px); }
 .faq-item.active dd{ max-height:400px; opacity:1; margin-top:8px; }
 
@@ -248,21 +299,27 @@ body::before{
 .faq-item.active dt .caret{ transform:rotate(180deg); }
 
 /* ---------- Contact / Footer ---------- */
-.contact .contact-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:16px; }
+.contact .contact-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:16px; max-width:1000px; margin-left:auto; margin-right:auto; }
 @media (max-width:720px){ .contact .contact-grid{ grid-template-columns:1fr } }
 .ig-link{ color:var(--accent); }
-.site-footer{ margin-top:28px; padding-top:18px; border-top:1px solid var(--stroke); color:var(--muted); font-size:.95rem; }
+.site-footer{ margin-top:28px; padding-top:18px; border-top:1px solid var(--stroke); color:var(--muted); font-size:.95rem; text-align:center; }
 
 /* ---------- Grid helpers (now auto-fit to avoid gaps) ---------- */
 .grid-3{
   display:grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap:16px;
+  max-width:1000px;
+  margin-left:auto;
+  margin-right:auto;
 }
 .grid-2{
   display:grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap:16px;
+  max-width:1000px;
+  margin-left:auto;
+  margin-right:auto;
 }
 @media (max-width:920px){ .grid-3{ grid-template-columns:1fr } }
 @media (max-width:860px){ .grid-2{ grid-template-columns:1fr } }
@@ -298,72 +355,4 @@ body::before{
 /* ---------- Accessibility / reduced motion ---------- */
 @media (prefers-reduced-motion: reduce){
   .hero-bg, .hero:hover .hero-bg{ transition: none; transform: none; }
-}
-/* ---------- Fix centering globale per sezioni e pannelli ---------- */
-/* Forza ogni section ad allineare il suo contenuto al centro della viewport.
-   Questo evita che il contenuto sembri "spostato" rispetto al watermark. */
-
-.section{
-  display: flex;
-  justify-content: center;   /* centra orizzontalmente il contenuto */
-  align-items: flex-start;   /* mantiene i contenuti in alto */
-  padding-left: 0;           /* rimuove eventuali offset laterali */
-  padding-right: 0;
-}
-
-/* applica al container dentro le section: larghezza piena ma limitata e centrata */
-.section > .container {
-  width: 100%;
-  max-width: 1000px;         /* regola a piacere: 1000px è comodo per mobile/desktop */
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 20px;        /* mantiene padding interno */
-  padding-right: 20px;
-  box-sizing: border-box;
-}
-
-/* assicura che i pannelli glass (.card, .person-card ecc.) siano centrati e larghezza coerente */
-.section .card,
-.section .person-card,
-.section .content-panel,
-.section .faq-grid,
-.section .contact-grid {
-  margin-left: 0;
-  margin-right: 0;
-}
-
-/* se usi .section-panel (wrapper consigliato), rendilo centrale e responsive */
-.section .section-panel{
-  width:100%;
-  max-width:960px;
-  margin:0 auto;
-  box-sizing:border-box;
-}
-
-/* In mobile manteniamo padding e rimozione offset */
-@media (max-width: 860px){
-  .section{
-    padding-left: 16px;
-    padding-right: 16px;
-  }
-  .section > .container {
-    padding-left: 12px;
-    padding-right: 12px;
-  }
-  .section .section-panel {
-    max-width: 100%;
-    padding-left: 12px;
-    padding-right: 12px;
-  }
-}
-
-/* Fix per overflow or elemento che "sposta" la pagina a destra */
-html, body {
-  overflow-x: hidden; /* evita scroll orizzontale causato da elementi fuori bordo */
-}
-
-/* Qualche micro-rifinitura per il watermark: manteniamo il centro in corrispondenza della viewport */
-body::before {
-  background-position: center center; /* assicurati sia centrato sulla viewport */
-  background-size: cover;
-}
+   }
