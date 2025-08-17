@@ -362,3 +362,22 @@ body::before{
 @media (prefers-reduced-motion: reduce){
   .hero-bg, .hero:hover .hero-bg{ transition: none; transform: none; }
 }
+/* --- Anchor offset & tap fixes --- */
+:root{
+  /* 64px è l’altezza reale della navbar che hai */
+  --navbar-height: 64px;
+}
+
+/* iOS a volte ignora scroll-padding-top globale: forziamo per ogni target */
+[id]{
+  scroll-margin-top: calc(var(--navbar-height) + 12px);
+}
+
+/* mantieni anche questo per i browser che lo rispettano correttamente */
+html{
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--navbar-height) + 12px);
+}
+
+/* assicura che link e bottoni siano sempre cliccabili sopra tutto */
+.nav-wrap, .navpanel, .navlinks a, .btn { z-index: 150; position: relative; }
