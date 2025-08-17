@@ -1,5 +1,5 @@
 /* =========================
-   style.css - Eidolon Genesis (unito + section-panel) - PATCHED
+   style.css - Eidolon Genesis (final patch)
    Put images in /public:
      - /Eidolongenesislogo-v2.png
      - /Eidomalogo.png
@@ -28,6 +28,9 @@ a{text-decoration:none}
   --container-w:1120px;
   --radius:14px;
   --transition:280ms cubic-bezier(.2,.9,.25,1);
+
+  /* NAVBAR / anchor offset: regola se cambi altezza navbar */
+  --navbar-height: 80px;
 }
 
 /* ---------- Base ---------- */
@@ -41,10 +44,12 @@ html,body{
   -webkit-font-smoothing:antialiased;
   -moz-osx-font-smoothing:grayscale;
 
-  /* evita lo "spiraglio" orizzontale e ancore stick */
+  /* evita lo "spiraglio" orizzontale */
   overflow-x:hidden;
-  scroll-padding-top:80px; /* utile per anchors + navbar */
 }
+
+/* browser native smooth + offset for sticky nav */
+html { scroll-behavior: smooth; scroll-padding-top: var(--navbar-height); }
 
 /* ---------- Global watermark behind content ----------
    Big faint logo; centrato via transform per non sembrare spostato. */
@@ -61,7 +66,7 @@ body::before{
   background-image: url('/Eidolongenesislogo-v2.png'); /* put file in /public */
   background-position: center center;
   background-repeat: no-repeat;
-  background-size: 2200px auto; /* huge watermark — adjust if needed */
+  background-size: 2200px auto; /* adjust if needed */
   opacity: 0.05;
   filter: grayscale(70%) contrast(0.95);
 }
@@ -74,6 +79,7 @@ body::before{
   padding:0 20px;
   position:relative;
   z-index:2;
+  box-sizing:border-box;
 }
 
 /* ---------- NAVBAR - restore semplice + mobile ---------- */
@@ -103,14 +109,14 @@ body::before{
 .site-title{ font-family:"Orbitron", sans-serif; letter-spacing:.08em; font-weight:700; color:var(--text); }
 
 /* links */
-.navpanel{ display:flex; align-items:center; gap:20px; }
+.navpanel{ display:flex; align-items:center; gap:20px; z-index:120; pointer-events:auto; }
 .navlinks{ display:flex; gap:18px; list-style:none; margin:0; padding:0; align-items:center; }
-.navlinks a{ color:var(--text); opacity:.95; padding:6px 8px; border-radius:8px; font-weight:600; transition:var(--transition); }
+.navlinks a{ color:var(--text); opacity:.95; padding:6px 8px; border-radius:8px; font-weight:600; transition:var(--transition); -webkit-tap-highlight-color: rgba(0,0,0,0); touch-action: manipulation; }
 .navlinks a:hover{ color:var(--accent); transform:translateY(-2px); }
 
 /* social CTA */
 .social-cta{ display:flex; align-items:center; gap:8px; }
-.ig-btn{ display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:10px; border:1px solid rgba(255,255,255,0.03); color:var(--text); background:transparent; font-weight:700; }
+.ig-btn{ display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:10px; border:1px solid rgba(255,255,255,0.03); color:var(--text); background:transparent; font-weight:700; -webkit-tap-highlight-color: rgba(0,0,0,0); touch-action: manipulation; }
 .ig-btn:hover{ color:var(--accent); }
 
 /* hamburger - mobile */
@@ -162,7 +168,7 @@ body::before{
 
 /* CTA */
 .hero-actions{ display:flex; gap:0.9rem; justify-content:center; flex-wrap:wrap; margin-top:1rem; }
-.btn{ display:inline-flex; align-items:center; gap:.6rem; padding:.75rem 1.1rem; border-radius:12px; font-weight:700; transition:var(--transition); border:1px solid rgba(255,255,255,0.03); }
+.btn{ display:inline-flex; align-items:center; gap:.6rem; padding:.75rem 1.1rem; border-radius:12px; font-weight:700; transition:var(--transition); border:1px solid rgba(255,255,255,0.03); -webkit-tap-highlight-color: rgba(0,0,0,0); touch-action: manipulation; }
 .btn.primary{ background: linear-gradient(180deg, var(--accent), rgba(159,214,228,0.9)); color:#061019; box-shadow: 0 12px 30px rgba(110,247,255,0.06); }
 .btn.primary:hover{ transform:translateY(-4px); filter:brightness(1.02); }
 .btn.ghost{ background:transparent; color:var(--text); border:1px solid rgba(255,255,255,0.04); }
@@ -355,4 +361,4 @@ body::before{
 /* ---------- Accessibility / reduced motion ---------- */
 @media (prefers-reduced-motion: reduce){
   .hero-bg, .hero:hover .hero-bg{ transition: none; transform: none; }
-   }
+}
