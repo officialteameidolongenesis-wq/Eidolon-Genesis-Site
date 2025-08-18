@@ -38,8 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
 
-    // Debug helper (rimuovi in produzione)
-    // console.log('menu.js init OK');
+     console.log('menu.js init OK');
   } catch (err) {
     console.error('menu.js error:', err);
   }
