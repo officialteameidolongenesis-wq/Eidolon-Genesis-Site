@@ -5,22 +5,19 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!faqItems || faqItems.length === 0) return;
 
     faqItems.forEach(item => {
-      // Supporta sia "dt" sia eventuali bottoni con classe .faq-question
-      const dt = item.querySelector('dt') || item.querySelector('.faq-question');
-      if (!dt) return;
+      const trigger = item.querySelector('dt, .faq-question');
+      if (!trigger) return;
 
-      dt.addEventListener('click', () => {
-        // chiude le altre
+      trigger.style.cursor = 'pointer'; // indica che è cliccabile
+
+      trigger.addEventListener('click', () => {
+        // Chiudi tutte le altre
         faqItems.forEach(i => {
           if (i !== item) i.classList.remove('active');
         });
-        // toggle quella cliccata
+        // Apri/chiudi questa
         item.classList.toggle('active');
       });
     });
-
-    // console.log('faq.js init OK');
   } catch (err) {
     console.error('faq.js error:', err);
-  }
-});
