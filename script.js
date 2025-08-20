@@ -36,41 +36,64 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  /* ---------- SMOOTH SCROLL ---------- */
-  // ora l'offset viene calcolato dinamicamente dall'altezza della header
-  const headerEl = document.querySelector('header'); // usa header/nav-wrap come riferimento
+  //* ---------- SMOOTH SCROLL ---------- */
+  const headerEl = document.querySelector('.nav-wrap');
 
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  function getNavOffset() {
+    if (!headerEl) return 0;
+    // height + eventuali bordi (sticky)
+    return Math.round(headerEl.getBoundingClientRect().height || 0);
+  }
+
+  function scrollToHash(hash) {
+    if (!hash || hash === '#') return;
+    const id = hash.replace(/^#/, '');
+    const target = document.getElementById(id);
+    if (!target) return;
+
+    const NAV_OFFSET = getNavOffset();
+    const rect = target.getBoundingClientRect();
+    const absoluteY = (window.pageYOffset || window.scrollY || 0) + rect.top - NAV_OFFSET;
+
+    // Chiudi menu mobile se aperto
+    if (panel && panel.classList.contains('open')) {
+      panel.classList.remove('open');
+      if (btn) { btn.setAttribute('aria-expanded', 'false'); btn.classList.remove('open'); }
+    }
+
+    // Prova scroll “smooth”, con fallback hard
+    try {
+      window.scrollTo({ top: absoluteY, behavior: 'smooth' });
+    } catch (e) {
+      window.scrollTo(0, absoluteY);
+    }
+
+    // Accessibilità (opzionale, innocuo)
+    setTimeout(() => {
+      try { target.setAttribute('tabindex', '-1'); target.focus({ preventScroll: true }); } catch(_) {}
+    }, 500);
+  }
+
+  // Clic su link interni (nav + hero)
+  document.querySelectorAll('.navlinks a[href^="#"], .hero-actions a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
       const href = this.getAttribute('href');
       if (!href || href === '#') return;
-      const target = document.querySelector(href);
-      if (target) {
-        e.preventDefault();
-
-        // calcolo dinamico dell'offset in base all'altezza corrente della header
-        const NAV_OFFSET = headerEl ? Math.round(headerEl.getBoundingClientRect().height) : 72;
-
-        // chiudi menu mobile se aperto
-        if (panel && panel.classList.contains('open')) {
-          panel.classList.remove('open');
-          if (btn) { btn.setAttribute('aria-expanded', 'false'); btn.classList.remove('open'); }
-        }
-
-        // calcolo posizione assoluta e scroll
-        const rect = target.getBoundingClientRect();
-        const absoluteY = window.pageYOffset + rect.top - NAV_OFFSET;
-        window.scrollTo({ top: absoluteY, behavior: 'smooth' });
-
-        // per accessibilità: porta il focus sull'elemento target dopo lo scroll (leggero timeout)
-        // Nota: setTimeout piccolo perché focus immediato può interferire con scroll animato su alcuni browser
-        setTimeout(() => {
-          try { target.setAttribute('tabindex', '-1'); target.focus({ preventScroll: true }); } catch (err) { /* no-op */ }
-        }, 600);
-      }
-    });
+      e.preventDefault();
+      scrollToHash(href);
+      // Aggiorna la barra degli indirizzi senza saltare
+      try { history.pushState(null, '', href); } catch (_) {}
+    }, { passive: false });
   });
 
+  // Supporta apertura pagina con hash già presente (es. …/index.html#faq)
+  if (location.hash) {
+    // attendo un attimo così layout/sticky sono calcolati
+    setTimeout(() => scrollToHash(location.hash), 0);
+  }
+
+  // Se l’hash cambia (es. da link esterni, back/forward)
+  window.addEventListener('hashchange', () => scrollToHash(location.hash));
   /* ---------- FAQ INTERATTIVE ---------- */
   // Usare max-height animata per transizione fluida
   const faqItems = document.querySelectorAll('.faq-item');
