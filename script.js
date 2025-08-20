@@ -37,8 +37,9 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ---------- SMOOTH SCROLL ---------- */
-  // offset per navbar sticky (adatta se la tua navbar ha altezza diversa)
-  const NAV_OFFSET = 72;
+  // ora l'offset viene calcolato dinamicamente dall'altezza della header
+  const headerEl = document.querySelector('header'); // usa header/nav-wrap come riferimento
+
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
       const href = this.getAttribute('href');
@@ -46,15 +47,26 @@ document.addEventListener('DOMContentLoaded', () => {
       const target = document.querySelector(href);
       if (target) {
         e.preventDefault();
+
+        // calcolo dinamico dell'offset in base all'altezza corrente della header
+        const NAV_OFFSET = headerEl ? Math.round(headerEl.getBoundingClientRect().height) : 72;
+
         // chiudi menu mobile se aperto
         if (panel && panel.classList.contains('open')) {
           panel.classList.remove('open');
           if (btn) { btn.setAttribute('aria-expanded', 'false'); btn.classList.remove('open'); }
         }
-        // calcolo con offset per non finire sotto la navbar
+
+        // calcolo posizione assoluta e scroll
         const rect = target.getBoundingClientRect();
         const absoluteY = window.pageYOffset + rect.top - NAV_OFFSET;
         window.scrollTo({ top: absoluteY, behavior: 'smooth' });
+
+        // per accessibilità: porta il focus sull'elemento target dopo lo scroll (leggero timeout)
+        // Nota: setTimeout piccolo perché focus immediato può interferire con scroll animato su alcuni browser
+        setTimeout(() => {
+          try { target.setAttribute('tabindex', '-1'); target.focus({ preventScroll: true }); } catch (err) { /* no-op */ }
+        }, 600);
       }
     });
   });
