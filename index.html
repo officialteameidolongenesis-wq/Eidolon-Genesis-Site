@@ -16,8 +16,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Unica+One&display=swap" rel="stylesheet">
   <!-- Main stylesheet -->
   <link rel="stylesheet" href="style.css">
-  <!-- NOTE: removed the inline rule that forced .faq-item dd { display:none } because it conflicted
-       with the max-height/opacity transitions in style.css. Keeping only safe fallbacks here. -->
+  <!-- Fallback small inline style (minimal, non-conflicting) -->
   <style>
     :root { --accent:#6ef7ff; --deep:#5a2249; --bg:#0e0e11; --muted:#9fb0be; --ice:#e2f1f7; }
     html,body{
@@ -28,7 +27,7 @@
       font-family:Orbitron, sans-serif;
     }
     a{color:var(--ice);text-decoration:none}
-    /* keep minimal non-conflicting fallback (no display:none on dd) */
+    /* minimal fallback: don't force dd {display:none} here, style.css controls FAQ animation */
     .faq-item { cursor:pointer; margin-bottom:1rem; }
     .faq-item dt { font-weight:bold; }
   </style>
@@ -257,74 +256,7 @@
     </div>
   </section>
 
-  <!-- JS: menu + smooth scroll + faq toggle -->
-  <script>
-    /* Robust unified script: hamburger, smooth-scroll, faq.
-       Put this inline (as here) OR split into files (see notes below). */
-    document.addEventListener('DOMContentLoaded', function () {
-      // ---------- hamburger & panel ----------
-      const btn = document.getElementById('hamburger');
-      const panel = document.getElementById('navpanel');
-
-      if (btn && panel) {
-        const toggleMenu = () => {
-          const expanded = btn.getAttribute('aria-expanded') === 'true';
-          btn.setAttribute('aria-expanded', String(!expanded));
-          panel.classList.toggle('open');
-        };
-
-        btn.addEventListener('click', toggleMenu);
-        btn.addEventListener('keydown', (e) => {
-          if (e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault();
-            toggleMenu();
-          } else if (e.key === 'Escape') {
-            panel.classList.remove('open');
-            btn.setAttribute('aria-expanded', 'false');
-          }
-        });
-
-        // Close menu when clicking outside
-        document.addEventListener('click', (e) => {
-          const target = e.target;
-          if (!panel.contains(target) && !btn.contains(target) && panel.classList.contains('open')) {
-            panel.classList.remove('open');
-            btn.setAttribute('aria-expanded', 'false');
-          }
-        });
-      }
-
-      // ---------- smooth scroll for internal anchors ----------
-      document.querySelectorAll('a[href^="#"]').forEach(a => {
-        a.addEventListener('click', function (e) {
-          const href = this.getAttribute('href');
-          if (!href || href === '#') return;
-          const target = document.querySelector(href);
-          if (target) {
-            e.preventDefault();
-            // close mobile nav if open
-            if (panel && panel.classList.contains('open')) {
-              panel.classList.remove('open');
-              if (btn) btn.setAttribute('aria-expanded', 'false');
-            }
-            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          }
-        });
-      });
-
-      // ---------- FAQ toggle ----------
-      const faqItems = document.querySelectorAll('.faq-item');
-      faqItems.forEach(item => {
-        const dt = item.querySelector('dt');
-        if (!dt) return;
-        dt.addEventListener('click', () => {
-          faqItems.forEach(i => {
-            if (i !== item) i.classList.remove('active');
-          });
-          item.classList.toggle('active');
-        });
-      });
-    });
-    <script src="script.js" defer></script>
+  <!-- JS: unified external script -->
+  <script src="script.js" defer></script>
 </body>
 </html>
