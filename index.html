@@ -1,5 +1,4 @@
 <!doctype html>
-
 <html lang="it">
 <head>
   <meta charset="utf-8" />
@@ -16,7 +15,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Unica+One&display=swap" rel="stylesheet">
   <!-- Main stylesheet -->
   <link rel="stylesheet" href="style.css">
-  <!-- Fallback small inline style (minimal, non-conflicting) -->
+  <!-- minimal non-conflicting fallback -->
   <style>
     :root { --accent:#6ef7ff; --deep:#5a2249; --bg:#0e0e11; --muted:#9fb0be; --ice:#e2f1f7; }
     html,body{
@@ -27,7 +26,7 @@
       font-family:Orbitron, sans-serif;
     }
     a{color:var(--ice);text-decoration:none}
-    /* minimal fallback: don't force dd {display:none} here, style.css controls FAQ animation */
+    /* non forziamo dd display:none qui (can conflict con JS transitions) */
     .faq-item { cursor:pointer; margin-bottom:1rem; }
     .faq-item dt { font-weight:bold; }
   </style>
@@ -256,7 +255,146 @@
     </div>
   </section>
 
-  <!-- JS: unified external script -->
-  <script src="script.js?v=2" defer></script>
+  <!-- JS: unified inline script (hamburger, smooth scroll, faq) -->
+  <script>
+    /* Robust unified script: hamburger, smooth-scroll, faq.
+       Inline here so you don't have to worry about file paths.
+    */
+    document.addEventListener('DOMContentLoaded', function () {
+      const btn = document.getElementById('hamburger');
+      const panel = document.getElementById('navpanel');
+      const headerEl = document.querySelector('.nav-wrap');
+
+      /* ---------- HAMBURGER MENU ---------- */
+      if (btn && panel) {
+        const toggleMenu = (e) => {
+          if (e) e.stopPropagation();
+          const isOpen = panel.classList.toggle('open');
+          btn.setAttribute('aria-expanded', String(isOpen));
+          btn.classList.toggle('open');
+        };
+
+        btn.addEventListener('click', toggleMenu);
+        btn.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            toggleMenu(e);
+          } else if (e.key === 'Escape') {
+            panel.classList.remove('open');
+            btn.setAttribute('aria-expanded', 'false');
+            btn.classList.remove('open');
+          }
+        });
+
+        // Close clicking outside (but allow clicks on anchors inside panel)
+        document.addEventListener('click', function (e) {
+          const t = e.target;
+          if (!panel.contains(t) && !btn.contains(t) && panel.classList.contains('open')) {
+            panel.classList.remove('open');
+            btn.setAttribute('aria-expanded', 'false');
+            btn.classList.remove('open');
+          }
+        });
+      }
+
+      /* ---------- helper for offset-aware scroll ---------- */
+      function getNavOffset() {
+        if (!headerEl) return 0;
+        return Math.round(headerEl.getBoundingClientRect().height || 0);
+      }
+
+      function scrollToHash(hash) {
+        if (!hash || hash === '#') return;
+        const id = hash.replace(/^#/, '');
+        const target = document.getElementById(id);
+        if (!target) return;
+
+        // compute header offset but respect any CSS scroll-margin-top set on target
+        const rect = target.getBoundingClientRect();
+        const computedScrollMarginTop = parseFloat(getComputedStyle(target).scrollMarginTop) || 0;
+        const NAV_OFFSET = getNavOffset();
+        // subtract only the difference (so we don't double-offset if css already sets scroll-margin-top)
+        const offset = Math.max(0, NAV_OFFSET - computedScrollMarginTop);
+        const absoluteY = (window.pageYOffset || window.scrollY || 0) + rect.top - offset;
+
+        // close mobile nav if open
+        if (panel && panel.classList.contains('open')) {
+          panel.classList.remove('open');
+          if (btn) { btn.setAttribute('aria-expanded', 'false'); btn.classList.remove('open'); }
+        }
+
+        try {
+          window.scrollTo({ top: absoluteY, behavior: 'smooth' });
+        } catch (err) {
+          window.scrollTo(0, absoluteY);
+        }
+
+        // accessibility: focus target after short delay
+        setTimeout(() => {
+          try {
+            target.setAttribute('tabindex', '-1');
+            target.focus({ preventScroll: true });
+          } catch (_) {}
+        }, 600);
+      }
+
+      /* ---------- attach click handlers to ALL internal anchors ---------- */
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          const href = this.getAttribute('href');
+          if (!href || href === '#') return;
+          e.preventDefault();
+          scrollToHash(href);
+          // update URL without jump (optional)
+          try { history.pushState(null, '', href); } catch (_) {}
+        }, { passive: false });
+      });
+
+      // if page loads with hash, scroll to it
+      if (location.hash) {
+        // small timeout so layout (sticky header) is settled
+        setTimeout(() => scrollToHash(location.hash), 50);
+      }
+
+      // support back/forward hash navigation
+      window.addEventListener('hashchange', () => scrollToHash(location.hash));
+
+      /* ---------- FAQ INTERATTIVE ---------- */
+      const faqItems = document.querySelectorAll('.faq-item');
+      faqItems.forEach(item => {
+        const dt = item.querySelector('dt');
+        const dd = item.querySelector('dd');
+        if (!dt || !dd) return;
+
+        // prepare dd for JS-driven animation (do not rely on CSS display:none)
+        dd.style.overflow = 'hidden';
+        dd.style.maxHeight = item.classList.contains('active') ? dd.scrollHeight + 'px' : '0px';
+        dd.style.opacity = item.classList.contains('active') ? '1' : '0';
+        dd.style.transition = 'max-height 320ms ease, opacity 240ms ease';
+
+        dt.addEventListener('click', () => {
+          // close others (single-open behavior)
+          faqItems.forEach(i => {
+            if (i !== item) {
+              i.classList.remove('active');
+              const otherDd = i.querySelector('dd');
+              if (otherDd) { otherDd.style.maxHeight = '0px'; otherDd.style.opacity = '0'; i.setAttribute('aria-expanded','false'); }
+            }
+          });
+
+          const nowOpen = !item.classList.contains('active');
+          item.classList.toggle('active');
+          item.setAttribute('aria-expanded', String(nowOpen));
+          if (nowOpen) {
+            dd.style.maxHeight = dd.scrollHeight + 'px';
+            dd.style.opacity = '1';
+          } else {
+            dd.style.maxHeight = '0px';
+            dd.style.opacity = '0';
+          }
+        });
+      });
+    });
+  </script>
 </body>
-</html>
+  </html>
