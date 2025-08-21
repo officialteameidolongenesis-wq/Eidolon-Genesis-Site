@@ -12,6 +12,7 @@ section { scroll-margin-top: 80px; } /* adatta a quanto è alta la navbar */
 img,svg{display:block;max-width:100%}
 button{font:inherit;cursor:pointer}
 a{text-decoration:none}
+
 /* ---------- Variabili (palette) ---------- */
 :root{
   --bg:#0b0b0d;
@@ -28,11 +29,14 @@ a{text-decoration:none}
   --container-w:1120px;
   --radius:14px;
   --transition:280ms cubic-bezier(.2,.9,.25,1);
+
+  /* nav height usata per fallback se serve */
+  --nav-h: 64px;
 }
 
 /* ---------- Base ---------- */
 html,body{
-  height:100%;
+  min-height:100%;
   margin:0;
   background:var(--bg);
   color:var(--text);
@@ -93,7 +97,7 @@ body::before{
   align-items:center;
   justify-content:space-between;
   gap:12px;
-  height:64px;
+  height:var(--nav-h);
   padding:0 16px;
 }
 
@@ -105,31 +109,21 @@ body::before{
 /* links */
 .navpanel{ display:flex; align-items:center; gap:20px; }
 .navlinks{ display:flex; gap:18px; list-style:none; margin:0; padding:0; align-items:center; }
-.navlinks a{ color:var(--text); opacity:.95; padding:6px 8px; border-radius:8px; font-weight:600; transition:var(--transition); }
+.navlinks a{ color:var(--text); opacity:.95; padding:6px 8px; border-radius:8px; font-weight:600; transition:var(--transition); pointer-events:auto; }
 .navlinks a:hover{ color:var(--accent); transform:translateY(-2px); }
 
 /* social CTA */
 .social-cta{ display:flex; align-items:center; gap:8px; }
-.ig-btn{ display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:10px; border:1px solid rgba(255,255,255,0.03); color:var(--text); background:transparent; font-weight:700; }
+.ig-btn{ display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:10px; border:1px solid rgba(255,255,255,0.03); color:var(--text); background:transparent; font-weight:700; pointer-events:auto; }
 .ig-btn:hover{ color:var(--accent); }
 
 /* hamburger - mobile */
 .hamburger{ display:none; background:none; border:0; width:44px; height:40px; padding:6px; }
 .hamburger span{ display:block; height:2px; background:var(--text); margin:6px 0; border-radius:4px; transition:var(--transition); }
 
-/* mobile nav panel */
-@media (max-width: 860px){
-  .hamburger{ display:inline-block; }
-  .navpanel{
-    position:fixed; top:64px; left:0; right:0;
-    background: rgba(12,12,16,0.98);
-    border-bottom:1px solid rgba(255,255,255,0.03);
-    transform:translateY(-8px); opacity:0; pointer-events:none;
-    transition:200ms ease; padding:14px 18px; flex-direction:column; align-items:flex-start; gap:12px;
-    z-index:140;
-  }
-  .navpanel.open{ transform:translateY(0); opacity:1; pointer-events:auto; }
-  .navlinks{ flex-direction:column; gap:10px; width:100%; }
+/* mobile nav panel (default visible on desktop) */
+.navpanel{
+  transition: transform 200ms ease, opacity 200ms ease, visibility 200ms step-start;
 }
 
 /* ---------- Hero ---------- */
@@ -162,7 +156,7 @@ body::before{
 
 /* CTA */
 .hero-actions{ display:flex; gap:0.9rem; justify-content:center; flex-wrap:wrap; margin-top:1rem; }
-.btn{ display:inline-flex; align-items:center; gap:.6rem; padding:.75rem 1.1rem; border-radius:12px; font-weight:700; transition:var(--transition); border:1px solid rgba(255,255,255,0.03); }
+.btn{ display:inline-flex; align-items:center; gap:.6rem; padding:.75rem 1.1rem; border-radius:12px; font-weight:700; transition:var(--transition); border:1px solid rgba(255,255,255,0.03); pointer-events:auto; }
 .btn.primary{ background: linear-gradient(180deg, var(--accent), rgba(159,214,228,0.9)); color:#061019; box-shadow: 0 12px 30px rgba(110,247,255,0.06); }
 .btn.primary:hover{ transform:translateY(-4px); filter:brightness(1.02); }
 .btn.ghost{ background:transparent; color:var(--text); border:1px solid rgba(255,255,255,0.04); }
@@ -326,10 +320,28 @@ body::before{
 
 /* ---------- Responsive & Mobile adjustments ---------- */
 @media (max-width: 860px){
-  .navpanel{ position:fixed; top:64px; left:0; right:0; background: #0c0c10; border-bottom:1px solid var(--stroke); transform:translateY(-8px); opacity:0; pointer-events:none; transition:200ms ease; padding:14px 20px; flex-direction:column; align-items:flex-start; gap:16px; z-index:140; }
-  .navpanel.open{ transform:translateY(0); opacity:1; pointer-events:auto; }
-  .navlinks{ flex-direction:column; gap:12px; width:100%; }
   .hamburger{ display:inline-block; }
+
+  /* mobile: navpanel stay out of pointer flow when closed */
+  .navpanel{
+    position:fixed; top:var(--nav-h); left:0; right:0;
+    background: rgba(12,12,16,0.98);
+    border-bottom:1px solid var(--stroke);
+    transform:translateY(-8px); opacity:0;
+    pointer-events:none;
+    visibility:hidden;             /* KEY: hide from hit-testing when closed */
+    transition: transform 200ms ease, opacity 200ms ease, visibility 200ms step-start;
+    padding:14px 18px; flex-direction:column; align-items:flex-start; gap:12px;
+    z-index:140;
+  }
+  .navpanel.open{
+    transform:translateY(0);
+    opacity:1;
+    pointer-events:auto;
+    visibility:visible;
+  }
+
+  .navlinks{ flex-direction:column; gap:10px; width:100%; }
   .hero-title{ font-size:clamp(22px, 7.5vw, 40px); }
   .btn{ width:100%; justify-content:center; padding:14px; }
   .hero-actions{ flex-direction:column; gap:12px; }
@@ -355,4 +367,12 @@ body::before{
 /* ---------- Accessibility / reduced motion ---------- */
 @media (prefers-reduced-motion: reduce){
   .hero-bg, .hero:hover .hero-bg{ transition: none; transform: none; }
-  }
+}
+
+/* ---------- HOTFIX (safety) ---------- */
+/* Ensure clickable elements are not blocked by any overlay */
+.navlinks a, .hero-actions a, .btn, .ig-btn { -webkit-tap-highlight-color: transparent; pointer-events: auto !important; }
+
+/* If you ever want JS-free fallbacks for FAQ: keep these safe defaults (do not use display:none on dd,
+   because JS controls dd via max-height/opacity for smooth transition) */
+/* .faq-item dd { display:block; } */
