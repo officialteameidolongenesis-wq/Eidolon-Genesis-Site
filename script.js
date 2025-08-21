@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  //* ---------- SMOOTH SCROLL ---------- */
+  /* ---------- SMOOTH SCROLL ---------- */
   const headerEl = document.querySelector('.nav-wrap');
 
   function getNavOffset() {
