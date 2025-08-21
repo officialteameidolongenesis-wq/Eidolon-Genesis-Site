@@ -254,147 +254,157 @@
       </footer>
     </div>
   </section>
+  <!-- incolla questo subito prima di </body> (rimuovi altri script duplicati) -->
+<script>
+(function () {
+  'use strict';
 
-  <!-- JS: unified inline script (hamburger, smooth scroll, faq) -->
-  <script>
-    /* Robust unified script: hamburger, smooth-scroll, faq.
-       Inline here so you don't have to worry about file paths.
-    */
-    document.addEventListener('DOMContentLoaded', function () {
-      const btn = document.getElementById('hamburger');
-      const panel = document.getElementById('navpanel');
-      const headerEl = document.querySelector('.nav-wrap');
+  // --- Config ---
+  const DEBUG = false; // true per vedere alert di debug (raro)
+  const CLOSE_NAV_ON_CLICK = true;
 
-      /* ---------- HAMBURGER MENU ---------- */
-      if (btn && panel) {
-        const toggleMenu = (e) => {
-          if (e) e.stopPropagation();
-          const isOpen = panel.classList.toggle('open');
-          btn.setAttribute('aria-expanded', String(isOpen));
-          btn.classList.toggle('open');
-        };
+  // --- Utility ---
+  function log(...args){ if (DEBUG) console.log(...args); }
 
-        btn.addEventListener('click', toggleMenu);
-        btn.addEventListener('keydown', (e) => {
-          if (e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault();
-            toggleMenu(e);
-          } else if (e.key === 'Escape') {
-            panel.classList.remove('open');
-            btn.setAttribute('aria-expanded', 'false');
-            btn.classList.remove('open');
-          }
-        });
+  // trova elementi chiave
+  const header = document.querySelector('.nav-wrap');
+  const panel = document.getElementById('navpanel');
+  const btn = document.getElementById('hamburger');
 
-        // Close clicking outside (but allow clicks on anchors inside panel)
-        document.addEventListener('click', function (e) {
-          const t = e.target;
-          if (!panel.contains(t) && !btn.contains(t) && panel.classList.contains('open')) {
-            panel.classList.remove('open');
-            btn.setAttribute('aria-expanded', 'false');
-            btn.classList.remove('open');
-          }
-        });
+  // --- Hamburger behavior ---
+  if (btn && panel) {
+    function setMenu(open) {
+      if (open) {
+        panel.classList.add('open');
+        btn.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
+      } else {
+        panel.classList.remove('open');
+        btn.classList.remove('open');
+        btn.setAttribute('aria-expanded', 'false');
       }
+    }
 
-      /* ---------- helper for offset-aware scroll ---------- */
-      function getNavOffset() {
-        if (!headerEl) return 0;
-        return Math.round(headerEl.getBoundingClientRect().height || 0);
-      }
-
-      function scrollToHash(hash) {
-        if (!hash || hash === '#') return;
-        const id = hash.replace(/^#/, '');
-        const target = document.getElementById(id);
-        if (!target) return;
-
-        // compute header offset but respect any CSS scroll-margin-top set on target
-        const rect = target.getBoundingClientRect();
-        const computedScrollMarginTop = parseFloat(getComputedStyle(target).scrollMarginTop) || 0;
-        const NAV_OFFSET = getNavOffset();
-        // subtract only the difference (so we don't double-offset if css already sets scroll-margin-top)
-        const offset = Math.max(0, NAV_OFFSET - computedScrollMarginTop);
-        const absoluteY = (window.pageYOffset || window.scrollY || 0) + rect.top - offset;
-
-        // close mobile nav if open
-        if (panel && panel.classList.contains('open')) {
-          panel.classList.remove('open');
-          if (btn) { btn.setAttribute('aria-expanded', 'false'); btn.classList.remove('open'); }
-        }
-
-        try {
-          window.scrollTo({ top: absoluteY, behavior: 'smooth' });
-        } catch (err) {
-          window.scrollTo(0, absoluteY);
-        }
-
-        // accessibility: focus target after short delay
-        setTimeout(() => {
-          try {
-            target.setAttribute('tabindex', '-1');
-            target.focus({ preventScroll: true });
-          } catch (_) {}
-        }, 600);
-      }
-
-      /* ---------- attach click handlers to ALL internal anchors ---------- */
-      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-          const href = this.getAttribute('href');
-          if (!href || href === '#') return;
-          e.preventDefault();
-          scrollToHash(href);
-          // update URL without jump (optional)
-          try { history.pushState(null, '', href); } catch (_) {}
-        }, { passive: false });
-      });
-
-      // if page loads with hash, scroll to it
-      if (location.hash) {
-        // small timeout so layout (sticky header) is settled
-        setTimeout(() => scrollToHash(location.hash), 50);
-      }
-
-      // support back/forward hash navigation
-      window.addEventListener('hashchange', () => scrollToHash(location.hash));
-
-      /* ---------- FAQ INTERATTIVE ---------- */
-      const faqItems = document.querySelectorAll('.faq-item');
-      faqItems.forEach(item => {
-        const dt = item.querySelector('dt');
-        const dd = item.querySelector('dd');
-        if (!dt || !dd) return;
-
-        // prepare dd for JS-driven animation (do not rely on CSS display:none)
-        dd.style.overflow = 'hidden';
-        dd.style.maxHeight = item.classList.contains('active') ? dd.scrollHeight + 'px' : '0px';
-        dd.style.opacity = item.classList.contains('active') ? '1' : '0';
-        dd.style.transition = 'max-height 320ms ease, opacity 240ms ease';
-
-        dt.addEventListener('click', () => {
-          // close others (single-open behavior)
-          faqItems.forEach(i => {
-            if (i !== item) {
-              i.classList.remove('active');
-              const otherDd = i.querySelector('dd');
-              if (otherDd) { otherDd.style.maxHeight = '0px'; otherDd.style.opacity = '0'; i.setAttribute('aria-expanded','false'); }
-            }
-          });
-
-          const nowOpen = !item.classList.contains('active');
-          item.classList.toggle('active');
-          item.setAttribute('aria-expanded', String(nowOpen));
-          if (nowOpen) {
-            dd.style.maxHeight = dd.scrollHeight + 'px';
-            dd.style.opacity = '1';
-          } else {
-            dd.style.maxHeight = '0px';
-            dd.style.opacity = '0';
-          }
-        });
-      });
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      setMenu(!panel.classList.contains('open'));
     });
-  </script>
+
+    btn.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        setMenu(!panel.classList.contains('open'));
+      } else if (e.key === 'Escape') {
+        setMenu(false);
+      }
+    });
+
+    // chiudi cliccando fuori (ma non chiudere quando clicchi un link dentro)
+    document.addEventListener('click', (e) => {
+      const t = e.target;
+      if (!panel.contains(t) && !btn.contains(t) && panel.classList.contains('open')) {
+        setMenu(false);
+      }
+    }, { capture: true });
+  }
+
+  // --- Scroll to hash (uses CSS scroll-margin-top if present) ---
+  function scrollToElement(el) {
+    if (!el) return;
+    // preferisci scrollIntoView + CSS scroll-margin-top che hai impostato
+    try {
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } catch (err) {
+      // fallback
+      const rect = el.getBoundingClientRect();
+      const targetY = (window.pageYOffset || window.scrollY || 0) + rect.top;
+      window.scrollTo({ top: targetY, behavior: 'smooth' });
+    }
+    // focus per accessibilità (evita jump con preventScroll)
+    setTimeout(() => {
+      try {
+        el.setAttribute('tabindex', '-1');
+        el.focus({ preventScroll: true });
+      } catch (e) {}
+    }, 500);
+  }
+
+  // --- Delegated handler per tutti i link interni (desktop + mobile) ---
+  document.addEventListener('click', (ev) => {
+    const a = ev.target.closest && ev.target.closest('a[href^="#"]');
+    if (!a) return;
+    // non interferire con mailto o altri hash particolari
+    const href = a.getAttribute('href');
+    if (!href || href === '#') return;
+
+    // Previeni il comportamento di default e fai lo smooth scroll
+    ev.preventDefault();
+
+    // se il nav è aperto (mobile) chiudilo
+    if (CLOSE_NAV_ON_CLICK && panel && panel.classList.contains('open')) {
+      panel.classList.remove('open');
+      if (btn) { btn.classList.remove('open'); btn.setAttribute('aria-expanded','false'); }
+    }
+
+    // scroll verso target (se esiste)
+    const id = href.replace(/^#/, '');
+    const target = document.getElementById(id);
+    if (target) {
+      scrollToElement(target);
+      // aggiorna la url (senza forzare jump)
+      try { history.pushState(null, '', href); } catch (_) {}
+    } else {
+      log('Target non trovato per', href);
+    }
+  }, { passive: false });
+
+  // --- Supporta apertura pagina con hash già presente ---
+  if (location.hash) {
+    // small delay per permettere il calcolo layout/sticky header
+    setTimeout(() => {
+      const id = location.hash.replace(/^#/, '');
+      const t = document.getElementById(id);
+      if (t) scrollToElement(t);
+    }, 60);
+  }
+
+  // --- FAQ (same as before, but safe) ---
+  const faqItems = document.querySelectorAll('.faq-item');
+  faqItems.forEach(item => {
+    const dt = item.querySelector('dt');
+    const dd = item.querySelector('dd');
+    if (!dt || !dd) return;
+
+    // setup initial state
+    dd.style.overflow = 'hidden';
+    dd.style.maxHeight = item.classList.contains('active') ? dd.scrollHeight + 'px' : '0px';
+    dd.style.opacity = item.classList.contains('active') ? '1' : '0';
+    dd.style.transition = 'max-height 320ms ease, opacity 240ms ease';
+
+    dt.addEventListener('click', () => {
+      // chiudi le altre
+      faqItems.forEach(i => {
+        if (i !== item) {
+          i.classList.remove('active');
+          const otherDd = i.querySelector('dd');
+          if (otherDd) { otherDd.style.maxHeight = '0px'; otherDd.style.opacity = '0'; i.setAttribute('aria-expanded','false'); }
+        }
+      });
+      // toggle
+      const open = !item.classList.contains('active');
+      item.classList.toggle('active', open);
+      item.setAttribute('aria-expanded', String(open));
+      if (open) {
+        dd.style.maxHeight = dd.scrollHeight + 'px';
+        dd.style.opacity = '1';
+      } else {
+        dd.style.maxHeight = '0px';
+        dd.style.opacity = '0';
+      }
+    });
+  });
+
+})();
+</script>
 </body>
   </html>
