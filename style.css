@@ -7,13 +7,11 @@
 
 /* ---------- Reset minimo ---------- */
 *,*::before,*::after{box-sizing:border-box}
-html {
-  scroll-behavior: smooth;
-}
+html, body { scroll-behavior: smooth; }
+section { scroll-margin-top: 80px; } /* adatta a quanto è alta la navbar */
 img,svg{display:block;max-width:100%}
 button{font:inherit;cursor:pointer}
 a{text-decoration:none}
-
 /* ---------- Variabili (palette) ---------- */
 :root{
   --bg:#0b0b0d;
