@@ -26,7 +26,7 @@
       font-family:Orbitron, sans-serif;
     }
     a{color:var(--ice);text-decoration:none}
-    /* non forziamo dd display:none qui (can conflict con JS transitions) */
+    /* non forziamo dd display:none qui (can conflict with JS transitions) */
     .faq-item { cursor:pointer; margin-bottom:1rem; }
     .faq-item dt { font-weight:bold; }
   </style>
@@ -254,157 +254,161 @@
       </footer>
     </div>
   </section>
-  <!-- incolla questo subito prima di </body> (rimuovi altri script duplicati) -->
-<script>
-(function () {
-  'use strict';
 
-  // --- Config ---
-  const DEBUG = false; // true per vedere alert di debug (raro)
-  const CLOSE_NAV_ON_CLICK = true;
+  <!-- JS: unified inline script (hamburger, smooth scroll, faq) -->
+  <!-- This is the only JS change: makes anchors + faq reliably work on mobile/desktop -->
+  <script>
+  (function () {
+    'use strict';
 
-  // --- Utility ---
-  function log(...args){ if (DEBUG) console.log(...args); }
+    // Config
+    const DEBUG = false;
+    const CLOSE_NAV_ON_CLICK = true;
 
-  // trova elementi chiave
-  const header = document.querySelector('.nav-wrap');
-  const panel = document.getElementById('navpanel');
-  const btn = document.getElementById('hamburger');
+    function log(...args){ if (DEBUG) console.log(...args); }
 
-  // --- Hamburger behavior ---
-  if (btn && panel) {
-    function setMenu(open) {
-      if (open) {
-        panel.classList.add('open');
-        btn.classList.add('open');
-        btn.setAttribute('aria-expanded', 'true');
-      } else {
-        panel.classList.remove('open');
-        btn.classList.remove('open');
-        btn.setAttribute('aria-expanded', 'false');
+    // Elements
+    const header = document.querySelector('.nav-wrap');
+    const panel = document.getElementById('navpanel');
+    const btn = document.getElementById('hamburger');
+
+    /* ---------- HAMBURGER ---------- */
+    if (btn && panel) {
+      function setMenu(open) {
+        if (open) {
+          panel.classList.add('open');
+          btn.classList.add('open');
+          btn.setAttribute('aria-expanded','true');
+        } else {
+          panel.classList.remove('open');
+          btn.classList.remove('open');
+          btn.setAttribute('aria-expanded','false');
+        }
       }
-    }
 
-    btn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      setMenu(!panel.classList.contains('open'));
-    });
-
-    btn.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
         setMenu(!panel.classList.contains('open'));
-      } else if (e.key === 'Escape') {
-        setMenu(false);
-      }
-    });
+      });
 
-    // chiudi cliccando fuori (ma non chiudere quando clicchi un link dentro)
-    document.addEventListener('click', (e) => {
-      const t = e.target;
-      if (!panel.contains(t) && !btn.contains(t) && panel.classList.contains('open')) {
-        setMenu(false);
-      }
-    }, { capture: true });
-  }
-
-  // --- Scroll to hash (uses CSS scroll-margin-top if present) ---
-  function scrollToElement(el) {
-    if (!el) return;
-    // preferisci scrollIntoView + CSS scroll-margin-top che hai impostato
-    try {
-      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    } catch (err) {
-      // fallback
-      const rect = el.getBoundingClientRect();
-      const targetY = (window.pageYOffset || window.scrollY || 0) + rect.top;
-      window.scrollTo({ top: targetY, behavior: 'smooth' });
-    }
-    // focus per accessibilità (evita jump con preventScroll)
-    setTimeout(() => {
-      try {
-        el.setAttribute('tabindex', '-1');
-        el.focus({ preventScroll: true });
-      } catch (e) {}
-    }, 500);
-  }
-
-  // --- Delegated handler per tutti i link interni (desktop + mobile) ---
-  document.addEventListener('click', (ev) => {
-    const a = ev.target.closest && ev.target.closest('a[href^="#"]');
-    if (!a) return;
-    // non interferire con mailto o altri hash particolari
-    const href = a.getAttribute('href');
-    if (!href || href === '#') return;
-
-    // Previeni il comportamento di default e fai lo smooth scroll
-    ev.preventDefault();
-
-    // se il nav è aperto (mobile) chiudilo
-    if (CLOSE_NAV_ON_CLICK && panel && panel.classList.contains('open')) {
-      panel.classList.remove('open');
-      if (btn) { btn.classList.remove('open'); btn.setAttribute('aria-expanded','false'); }
-    }
-
-    // scroll verso target (se esiste)
-    const id = href.replace(/^#/, '');
-    const target = document.getElementById(id);
-    if (target) {
-      scrollToElement(target);
-      // aggiorna la url (senza forzare jump)
-      try { history.pushState(null, '', href); } catch (_) {}
-    } else {
-      log('Target non trovato per', href);
-    }
-  }, { passive: false });
-
-  // --- Supporta apertura pagina con hash già presente ---
-  if (location.hash) {
-    // small delay per permettere il calcolo layout/sticky header
-    setTimeout(() => {
-      const id = location.hash.replace(/^#/, '');
-      const t = document.getElementById(id);
-      if (t) scrollToElement(t);
-    }, 60);
-  }
-
-  // --- FAQ (same as before, but safe) ---
-  const faqItems = document.querySelectorAll('.faq-item');
-  faqItems.forEach(item => {
-    const dt = item.querySelector('dt');
-    const dd = item.querySelector('dd');
-    if (!dt || !dd) return;
-
-    // setup initial state
-    dd.style.overflow = 'hidden';
-    dd.style.maxHeight = item.classList.contains('active') ? dd.scrollHeight + 'px' : '0px';
-    dd.style.opacity = item.classList.contains('active') ? '1' : '0';
-    dd.style.transition = 'max-height 320ms ease, opacity 240ms ease';
-
-    dt.addEventListener('click', () => {
-      // chiudi le altre
-      faqItems.forEach(i => {
-        if (i !== item) {
-          i.classList.remove('active');
-          const otherDd = i.querySelector('dd');
-          if (otherDd) { otherDd.style.maxHeight = '0px'; otherDd.style.opacity = '0'; i.setAttribute('aria-expanded','false'); }
+      btn.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          setMenu(!panel.classList.contains('open'));
+        } else if (e.key === 'Escape') {
+          setMenu(false);
         }
       });
-      // toggle
-      const open = !item.classList.contains('active');
-      item.classList.toggle('active', open);
-      item.setAttribute('aria-expanded', String(open));
-      if (open) {
-        dd.style.maxHeight = dd.scrollHeight + 'px';
-        dd.style.opacity = '1';
-      } else {
-        dd.style.maxHeight = '0px';
-        dd.style.opacity = '0';
-      }
-    });
-  });
 
-})();
-</script>
+      // close clicking outside
+      document.addEventListener('click', (e) => {
+        const t = e.target;
+        if (!panel.contains(t) && !btn.contains(t) && panel.classList.contains('open')) {
+          setMenu(false);
+        }
+      }, { capture: true });
+    }
+
+    /* ---------- SCROLL FUNCTION ---------- */
+    function scrollToElement(el) {
+      if (!el) return;
+      try {
+        // rely on CSS scroll-margin-top if you set it (you have section {scroll-margin-top:80px})
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      } catch (err) {
+        const rect = el.getBoundingClientRect();
+        const targetY = (window.pageYOffset || window.scrollY || 0) + rect.top;
+        window.scrollTo({ top: targetY, behavior: 'smooth' });
+      }
+      // accessibility focus without jumping
+      setTimeout(() => {
+        try {
+          el.setAttribute('tabindex', '-1');
+          el.focus({ preventScroll: true });
+        } catch (e) {}
+      }, 500);
+    }
+
+    /* ---------- RELIABLE ANCHOR HANDLERS (mobile-friendly) ---------- */
+    (function attachAnchorHandlers() {
+      const anchors = Array.from(document.querySelectorAll('a[href^="#"]'));
+      anchors.forEach(a => {
+        const href = a.getAttribute('href');
+        if (!href || href === '#' || href.startsWith('mailto:') || href.startsWith('javascript:')) return;
+        const id = href.replace(/^#/, '');
+        const target = document.getElementById(id);
+
+        a.addEventListener('click', function (ev) {
+          // if no target, let default happen (e.g. mailto or invalid id)
+          if (!target) return;
+          ev.preventDefault();
+          ev.stopPropagation();
+
+          // close mobile nav first so layout stabilizes
+          if (CLOSE_NAV_ON_CLICK && panel && panel.classList.contains('open')) {
+            panel.classList.remove('open');
+            if (btn) { btn.classList.remove('open'); btn.setAttribute('aria-expanded','false'); }
+          }
+
+          // slight delay to allow nav close/layout recalculation (works well on mobile)
+          setTimeout(() => {
+            scrollToElement(target);
+            try { history.pushState(null, '', href); } catch (_) {}
+          }, 70);
+        }, { passive: false });
+
+        // touchstart stop-propagation to reduce accidental interference on some devices
+        a.addEventListener('touchstart', function (ev) {
+          ev.stopPropagation();
+        }, { passive: true });
+      });
+    })();
+
+    /* ---------- support direct hash on load (e.g. index.html#faq) ---------- */
+    if (location.hash) {
+      setTimeout(() => {
+        const id = location.hash.replace(/^#/, '');
+        const t = document.getElementById(id);
+        if (t) scrollToElement(t);
+      }, 60);
+    }
+
+    /* ---------- FAQ INTERATTIVE ---------- */
+    const faqItems = document.querySelectorAll('.faq-item');
+    faqItems.forEach(item => {
+      const dt = item.querySelector('dt');
+      const dd = item.querySelector('dd');
+      if (!dt || !dd) return;
+
+      dd.style.overflow = 'hidden';
+      dd.style.maxHeight = item.classList.contains('active') ? dd.scrollHeight + 'px' : '0px';
+      dd.style.opacity = item.classList.contains('active') ? '1' : '0';
+      dd.style.transition = 'max-height 320ms ease, opacity 240ms ease';
+
+      dt.addEventListener('click', () => {
+        // close others (single-open)
+        faqItems.forEach(i => {
+          if (i !== item) {
+            i.classList.remove('active');
+            const otherDd = i.querySelector('dd');
+            if (otherDd) { otherDd.style.maxHeight = '0px'; otherDd.style.opacity = '0'; i.setAttribute('aria-expanded','false'); }
+          }
+        });
+
+        const open = !item.classList.contains('active');
+        item.classList.toggle('active', open);
+        item.setAttribute('aria-expanded', String(open));
+        if (open) {
+          dd.style.maxHeight = dd.scrollHeight + 'px';
+          dd.style.opacity = '1';
+        } else {
+          dd.style.maxHeight = '0px';
+          dd.style.opacity = '0';
+        }
+      });
+    });
+
+  })();
+  </script>
 </body>
-  </html>
+</html>
